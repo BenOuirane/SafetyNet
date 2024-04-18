@@ -1,15 +1,15 @@
 package com.alerts.SafetyNet.repository;
 /**
- * Contains MedicalRecord Data, CRUD and advanced filter methods
+ * Contains Person Data, CRUD and advanced filter methods
  * 
  * @author : BEN OUIRANE Hajer
  *
  */
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import com.alerts.SafetyNet.entity.MedicalRecord;
+import com.alerts.SafetyNet.entity.Person;
 
 @Repository
-public interface medicalrecordRepository extends JpaRepository<MedicalRecord, Long>{
+public interface PersonRepository extends JpaRepository<Person, Long>{
 
 }

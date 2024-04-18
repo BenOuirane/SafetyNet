@@ -38,12 +38,12 @@ public class MedicalRecord {
 	@Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	 Long id;
-	 String firstName;
-	 String lastName;
+	Long id;
+	String firstName;
+	String lastName;
 	@JsonFormat(pattern = "MM/dd/yyyy")
-	 LocalDate birthdate;
-	 List<String> medications = new ArrayList<>();
-	 List<String> allergies = new ArrayList<>();
+	LocalDate birthdate;
+	List<String> medications = new ArrayList<>();
+	List<String> allergies = new ArrayList<>();
 
 }

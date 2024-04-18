@@ -31,7 +31,7 @@ public class Firestation {
 	@Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	 Long    id;
-	 String  address;
-	 Integer station;
+	Long    id;
+	String  address;
+	Integer station;
 }

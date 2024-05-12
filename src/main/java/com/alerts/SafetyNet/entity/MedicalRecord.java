@@ -9,13 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,8 +20,7 @@ import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
 
-@Entity
-@Table(name="medicalrecord")
+
 @Setter
 @Getter
 @NoArgsConstructor
@@ -34,16 +28,24 @@ import lombok.experimental.FieldDefaults;
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class MedicalRecord {
-	
-	@Id
-    @Column
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long id;
-	String firstName;
-	String lastName;
+
+	@JsonProperty("firstName")
+	private String firstName;
+	@JsonProperty("lastName")
+	private String lastName;
 	@JsonFormat(pattern = "MM/dd/yyyy")
-	LocalDate birthdate;
-	List<String> medications = new ArrayList<>();
-	List<String> allergies = new ArrayList<>();
+	private LocalDate birthdate;
+	@JsonProperty("medications")
+	private List<String> medications = new ArrayList<>();
+	@JsonProperty("allergies")
+	private List<String> allergies = new ArrayList<>();
+	@Override
+	public String toString() {
+		return "MedicalRecord [firstName=" + firstName + ", lastName="
+				+ lastName + ", birthdate=" + birthdate + ", medications="
+				+ medications + ", allergies=" + allergies + "]";
+	}
+	
+	
 
 }

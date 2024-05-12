@@ -5,11 +5,16 @@ package com.alerts.SafetyNet.repository;
  * @author : BEN OUIRANE Hajer
  *
  */
-import org.springframework.data.jpa.repository.JpaRepository;
+
 import org.springframework.stereotype.Repository;
 import com.alerts.SafetyNet.entity.MedicalRecord;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Repository
-public interface MedicalrecordRepository extends JpaRepository<MedicalRecord, Long>{
+public interface MedicalrecordRepository {
+	
+     static final Logger logger = LogManager.getLogger(MedicalrecordRepository.class);
+
 
 }

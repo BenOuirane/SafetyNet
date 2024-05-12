@@ -1,5 +1,7 @@
 package com.alerts.SafetyNet.service;
 
+import java.util.List;
+
 import com.alerts.SafetyNet.entity.Person;
 
 /**
@@ -10,11 +12,19 @@ import com.alerts.SafetyNet.entity.Person;
  */
 
 
+
 public interface PersonService {
 	
+	
+	List<Person> getPerson();
+	
+	
+	/*
     Person  createPerson(Person p);
     Person  updatePerson(long personId, Person p);
+    void    deletePerson(Person p);
 
 
+    */
 
 }

@@ -3,12 +3,9 @@ package com.alerts.SafetyNet.entity;
  * Class: Firestation
  * @author: BEN OUIRANE Hajer
  */
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,8 +14,7 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
-@Entity
-@Table(name="firestation")
+
 @Setter
 @Getter
 @NoArgsConstructor
@@ -27,11 +23,15 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Firestation {
 
-	
-	@Id
-    @Column
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long    id;
+	@JsonProperty("address")
 	String  address;
+	@JsonProperty("station")
 	Integer station;
+	@Override
+	public String toString() {
+		return "Firestation [address=" + address + ", station=" + station + "]";
+	}
+	
+	
+	
 }

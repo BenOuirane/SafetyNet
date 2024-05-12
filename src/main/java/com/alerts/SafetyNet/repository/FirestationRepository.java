@@ -6,12 +6,16 @@ package com.alerts.SafetyNet.repository;
  *
  */
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import com.alerts.SafetyNet.entity.Firestation;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 
 @Repository
-public interface FirestationRepository extends JpaRepository<Firestation, Long> {
+public interface FirestationRepository{
+	
+     static final Logger logger = LogManager.getLogger(FirestationRepository.class);
+
 
 }

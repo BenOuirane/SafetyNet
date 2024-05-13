@@ -2,6 +2,7 @@ package com.alerts.SafetyNet.service;
 
 import java.util.List;
 
+import com.alerts.SafetyNet.dto.PersonDto;
 import com.alerts.SafetyNet.entity.Person;
 
 /**
@@ -17,14 +18,14 @@ public interface PersonService {
 	
 	
 	List<Person> getPerson();
-	
-	
+    PersonDto  createPerson(PersonDto p);
+    PersonDto     createPersons(PersonDto p);
+
+    
+    
 	/*
-    Person  createPerson(Person p);
     Person  updatePerson(long personId, Person p);
     void    deletePerson(Person p);
-
-
     */
 
 }

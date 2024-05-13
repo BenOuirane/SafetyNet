@@ -6,6 +6,8 @@ package com.alerts.SafetyNet.service.impl;
  *
  */
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,14 +15,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.alerts.SafetyNet.repository.PersonRepository;
 import com.alerts.SafetyNet.repository.impl.PersonRepositoryImpl;
+import com.alerts.SafetyNet.dto.PersonDto;
 import com.alerts.SafetyNet.entity.Person;
 import com.alerts.SafetyNet.service.PersonService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 @Service
 public class PersonServiceImpl implements PersonService  {
 	
     private static  Logger logger = LoggerFactory.getLogger(PersonService.class);
+    private final ObjectMapper objectMapper = new ObjectMapper();
+
   
     @Autowired
 	PersonRepositoryImpl personRepositoryimpl;
@@ -31,6 +37,32 @@ public class PersonServiceImpl implements PersonService  {
 		return persons ;
 	
 	}
+
+	@Override
+	public PersonDto createPerson(PersonDto p) {
+			try {
+				 personRepositoryimpl.addPerson(p);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return p;
+	}
+
+    private List<PersonDto> persons = new ArrayList<>();
+
+    
+	@Override
+	public PersonDto createPersons(PersonDto person) {
+		logger.debug("Adding person: {} {}.", person.getFirstName(), person.getFirstName());
+        persons.add(person);
+        logger.info("Person added successfully: {} {}.", person.getFirstName(), person.getFirstName());
+
+        return person;
+	}
+
+
+
     
     
  
@@ -38,10 +70,6 @@ public class PersonServiceImpl implements PersonService  {
     
 
     /*
-	
-	
-	
-
 
 	@Override
 	public Person createPerson(Person p) {

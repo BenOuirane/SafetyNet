@@ -25,6 +25,9 @@ public class SafetyNetApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SafetyNetApplication.class, args);
 
+		File jsonFile = new File("src/main/resources/data/data.json");
+		boolean canWrite = jsonFile.canWrite();
+		System.out.println("Can write to file: " + canWrite);
 		
   	/*	
 		

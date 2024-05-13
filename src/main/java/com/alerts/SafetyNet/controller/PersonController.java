@@ -17,11 +17,14 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.alerts.SafetyNet.dto.PersonDto;
 import com.alerts.SafetyNet.entity.Person;
 import com.alerts.SafetyNet.repository.PersonRepository;
 import com.alerts.SafetyNet.service.PersonService;
 import com.alerts.SafetyNet.service.impl.PersonServiceImpl;
 
+import jakarta.validation.Valid;
 import lombok.extern.log4j.Log4j2;
 
 
@@ -53,20 +56,27 @@ public class PersonController {
         */
     }
     
-    
-    
 
+    @PostMapping("/post")
+    public ResponseEntity<?> createPerson(@RequestBody  PersonDto p){
+    //	try {
+    		PersonDto creaedPerson = 	personService.createPersons(p);
+    //	Person creaedPerson = personService.createPerson(p);
+    //    return new ResponseEntity<>(creaedPerson, HttpStatus.OK);
+            return new ResponseEntity<>(creaedPerson, HttpStatus.OK);
+  //  } catch (Exception e) {
+        // Log the exception or handle it appropriately
+   //     return new ResponseEntity<>("An error occurred while retrieving user data.", HttpStatus.INTERNAL_SERVER_ERROR);
+  //  }
+    	
+
+    }
+    
+    
     
     
     
     /*
-
-    @PostMapping("/post")
-    public ResponseEntity<Person> createPerson(@RequestBody @Valid Person p){
-    	Person creaedPerson = personService.createPerson(p);
-        return new ResponseEntity<>(creaedPerson, HttpStatus.OK);
-    }
-    
     
     @PostMapping("/post")
     public ResponseEntity<?> createPerson(@RequestBody Person p, BindingResult result) {

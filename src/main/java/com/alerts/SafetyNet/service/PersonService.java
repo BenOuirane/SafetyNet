@@ -1,9 +1,8 @@
 package com.alerts.SafetyNet.service;
 
 import java.util.List;
-
-import com.alerts.SafetyNet.dto.PersonDto;
 import com.alerts.SafetyNet.entity.Person;
+import com.alerts.SafetyNet.exception.NotFoundException;
 
 /**
  * Service that provides CRUD and advanced filter methods for person
@@ -16,16 +15,8 @@ import com.alerts.SafetyNet.entity.Person;
 
 public interface PersonService {
 	
-	
 	List<Person> getPerson();
-    PersonDto  createPerson(PersonDto p);
-    PersonDto     createPersons(PersonDto p);
-
-    
-    
-	/*
-    Person  updatePerson(long personId, Person p);
-    void    deletePerson(Person p);
-    */
-
+    Person    createPersons(Person p);
+    Person    updatePerson(Person p) throws NotFoundException;
+    void      delete(String firstName, String lastName) throws NotFoundException;
 }

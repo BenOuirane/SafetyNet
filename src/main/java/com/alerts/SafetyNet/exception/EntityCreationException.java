@@ -1,5 +1,8 @@
 package com.alerts.SafetyNet.exception;
 
+
+
+@SuppressWarnings("serial")
 public class EntityCreationException extends RuntimeException {
 
     public EntityCreationException(String message) {

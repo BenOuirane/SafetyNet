@@ -7,9 +7,8 @@ package com.alerts.SafetyNet.repository;
  *
  */
 
-import com.alerts.SafetyNet.dto.PersonDto;
 import com.alerts.SafetyNet.entity.Person;
-import java.io.IOException;
+import com.alerts.SafetyNet.exception.NotFoundException;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -27,16 +26,18 @@ public interface PersonRepository{
      * @return a list of all persons, obtained from JSON source, duplicates are possible
      */
      public   List<Person> getPersons();
+
+     Person  addPerson(Person person) ;
+
+     Person  updatePerson(Person person) throws NotFoundException;
      
-  // Person getPersonById(long id) throws IOException;
-
-     PersonDto  addPerson(PersonDto person) throws IOException;
-
-  // void updatePerson(Person person) throws IOException;
-
-  // void deletePerson(long id) throws IOException;
-    	
-    
+     void    deletePerson(Person person) throws NotFoundException;
+     
+     void    deletePersonByName(String firstName, String lastName) throws NotFoundException; 
+     
+     List<Person> getPersonsByName(String firstName, String lastName)  throws NotFoundException;
+    	    
+     
 	
 
 

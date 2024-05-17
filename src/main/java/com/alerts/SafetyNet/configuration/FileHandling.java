@@ -26,7 +26,7 @@ public class FileHandling {
 	
     private static  Logger logger = LogManager.getLogger(FileHandling.class);
     
-    private  List<Person> persons;
+    List<Person> persons;
     private  ObjectMapper objectMapper = new ObjectMapper();
 
     /**

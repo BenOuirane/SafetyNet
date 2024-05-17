@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.alerts.SafetyNet.loadservice.LoadPersonsService;
+import com.alerts.SafetyNet.loadservice.loadFirestationsService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -20,6 +21,10 @@ public class DataInitializer {
 	
 	@Autowired
 	LoadPersonsService loadPersonsService;
+	
+	
+	@Autowired
+	loadFirestationsService loadFirestationsService;
 	
 	@Value("${net.safety.alerts.dataUrl}")
 	private String dataUrl;
@@ -37,7 +42,7 @@ public class DataInitializer {
 		JsonNode root = objectMapper.readTree(new URL(dataUrl));
 
 		loadPersonsService.loadPersons(root.path(JsonFileConstants.persons));
-	//	loadFirestationsService.loadFirestations(root.path(JsonFileConstants.firestations));
+		loadFirestationsService.loadFirestations(root.path(JsonFileConstants.firestations));
 	//	loadMedicalRecordsService.loadMedicalRecords(root.path(JsonFileConstants.medicalrecords));
 	}
 	

@@ -70,8 +70,7 @@ public class PersonRepositoryImpl implements PersonRepository{
 
 
 	@Override
-	public List<Person> getPersonsByName(String firstName, String lastName)
-			throws NotFoundException {
+	public List<Person> getPersonsByName(String firstName, String lastName) throws NotFoundException {
 		// TODO Auto-generated method stub
 		return null;
 	}

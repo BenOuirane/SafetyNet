@@ -49,9 +49,11 @@ public class PersonController {
     
     
     @GetMapping("/getPersons")
-    public ResponseEntity<?> getUser() {
-    	List<Person> getUser = personService.getPerson();
-        return new ResponseEntity<>(getUser, HttpStatus.OK);
+    public ResponseEntity<?> getPersons() {
+    	log.info("Person Controller GET Request start. ");
+    	List<Person> getPerson = personService.getPerson();
+		log.info("Person Controller GET Request result : " + getPerson);
+        return new ResponseEntity<>(getPerson, HttpStatus.OK);
     }
 
 	/**

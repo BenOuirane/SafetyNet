@@ -19,5 +19,11 @@ public class JsonFileConstants {
 	public static final String person_zip = "zip";
 	public static final String person_phone = "phone";
 	public static final String person_email = "email";
+	
+	public static final String firestations = "firestations";
+	public static final String firestation_address = "address";
+	public static final String firestation_station = "station";
+	
+	
 
 }

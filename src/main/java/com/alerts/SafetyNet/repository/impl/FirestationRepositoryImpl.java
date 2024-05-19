@@ -3,11 +3,8 @@ package com.alerts.SafetyNet.repository.impl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.stereotype.Service;
-
 import com.alerts.SafetyNet.entity.Firestation;
-import com.alerts.SafetyNet.entity.Person;
 import com.alerts.SafetyNet.exception.NotFoundException;
 import com.alerts.SafetyNet.repository.FirestationRepository;
 

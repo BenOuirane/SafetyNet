@@ -6,11 +6,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.alerts.SafetyNet.entity.Firestation;
-import com.alerts.SafetyNet.entity.Person;
+import com.alerts.SafetyNet.exception.NotFoundException;
 import com.alerts.SafetyNet.service.FirestationService;
 import lombok.extern.log4j.Log4j2;
 import org.apache.logging.log4j.LogManager;
@@ -27,7 +28,7 @@ public class FirestationController {
     @Autowired
     FirestationService firestationService;
     
-    @GetMapping("/getPersons")
+    @GetMapping("/getFirestations")
     public ResponseEntity<?> getFirestations() {
     	log.info("Firestation Controller GET Request start. ");
     	List<Firestation> getFirestation = firestationService.getFirestation();
@@ -38,8 +39,8 @@ public class FirestationController {
 	/**
 	 * POST method of URL "/firestation/post"
 	 * 
-	 * @param person
-	 * @return ResponseEntity with Person creaedPerson and Http Status OK
+	 * @param Firestation
+	 * @return ResponseEntity with Firestation createFirestation and Http Status OK
 	 */
 
 
@@ -50,6 +51,23 @@ public class FirestationController {
     		log.info("Firestation Controller POST Request result : " + creaedFirestation);
             return new ResponseEntity<>(creaedFirestation, HttpStatus.OK);
     }
+    
+    /**
+   	 * UPDATE method of URL "/firestation/put"
+   	 * 
+   	 * @param Firestation
+   	 * @return ResponseEntity with updated Firestation and Http Status OK
+   	 * @throws NotFoundException
+   	 */
+       
+   	@PutMapping("/put")
+   	public ResponseEntity<Firestation> updatePerson(@RequestBody Firestation firestation) throws NotFoundException {
+   		log.info("Firestation Controller PUT Request start. Param Firestation = " + firestation);
+   		ResponseEntity<Firestation> updatedFirestation = new ResponseEntity<>(firestationService.updateFirestation(firestation), HttpStatus.OK);
+   		log.info("Firestation Controller PUT Request result : " + updatedFirestation);
+   		return updatedFirestation;
+   	}
+   	
     
     
     

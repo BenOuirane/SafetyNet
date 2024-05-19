@@ -11,6 +11,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.alerts.SafetyNet.entity.Firestation;
+import com.alerts.SafetyNet.exception.NotFoundException;
 import com.alerts.SafetyNet.repository.impl.FirestationRepositoryImpl;
 import com.alerts.SafetyNet.service.FirestationService;
 
@@ -29,8 +30,12 @@ public class FirestationServiceImpl  implements FirestationService {
 
 	@Override
 	public Firestation createFirestations(Firestation f) {
-		// TODO Auto-generated method stub
-		return null;
+		return  firestationRepositoryimpl.addFirestation(f);
+	}
+
+	@Override
+	public Firestation updateFirestation(Firestation f) throws NotFoundException {
+		return firestationRepositoryimpl.updateFirestation(f);
 	}
 
 

@@ -38,6 +38,24 @@ public class FirestationServiceImpl  implements FirestationService {
 		return firestationRepositoryimpl.updateFirestation(f);
 	}
 
+	@Override
+	public void deleteFirestation(Firestation f) throws NotFoundException {
+		 firestationRepositoryimpl.deleteFirestation(f);		
+	}
+
+	@Override
+	public void deleteFirestationsByAddress(String address) throws NotFoundException {
+		 firestationRepositoryimpl.deleteFirestationsByAddress(address);		
+		
+	}
+
+	@Override
+	public void deleteFirestationsByStationNumber(Integer stationNumber)
+			throws NotFoundException {
+		 firestationRepositoryimpl.deleteFirestationsByStationNumber(stationNumber);		
+		
+	}
+
 
 
 

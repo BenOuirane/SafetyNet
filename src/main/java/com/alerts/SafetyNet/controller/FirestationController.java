@@ -1,14 +1,18 @@
 package com.alerts.SafetyNet.controller;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.alerts.SafetyNet.entity.Firestation;
 import com.alerts.SafetyNet.exception.NotFoundException;
@@ -17,6 +21,20 @@ import lombok.extern.log4j.Log4j2;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+
+/**
+ * Endpoint "/firestation".<br>
+ * 
+ * "Cet endpoint permettra d’effectuer les actions suivantes via Post/Put/Delete
+ * avec HTTP :<br>
+ * ● ajouter une nouvelle firestation ; <br>
+ * ● mettre à jour une firestation existante (pour le moment, 
+ *  mettre à jour le numéro de la caserne de pompiers d'une adresse);<br>
+ * ● supprimer une firestation (supprimer le mapping d'une caserne ou d'une adresse.)"
+ * 
+ * @author BEN OUIRANE Hajeur
+ *
+ */
 
 @Log4j2
 @RestController
@@ -68,9 +86,33 @@ public class FirestationController {
    		return updatedFirestation;
    	}
    	
-    
-    
-    
+   	/**
+	 * DELETE method of URL "/firestation/delete"
+	 * 
+	 * @param address
+	 * @param stationNumber
+	 * @return ResponseEntity with a success message and Http Status OK
+	 * @throws NotFoundException
+	 */
+   	
+   	@DeleteMapping("/delete")
+	public ResponseEntity<String> deleteFirestations(@RequestParam Optional<String> address,
+			@RequestParam Optional<Integer> stationNumber) throws NotFoundException {
+		log.info("Firestation Controller DELETE Request start. Param address = " + address + " / stationNumber = " + stationNumber);
+        String message = "";
+        if(address.isPresent()) {
+        	firestationService.deleteFirestationsByAddress(address.get());
+        	message = "Firestation(s) successfully deleted";
+        } else if (stationNumber.isPresent()) {
+        	firestationService.deleteFirestationsByStationNumber(stationNumber.get());
+        	message = "Firestation(s) successfully deleted";
+        } else {
+        	throw new IllegalArgumentException();
+        }
+		ResponseEntity<String> result = ResponseEntity.status(HttpStatus.OK).body(message);
+		log.info("Firestation Controller DELETE Request result : " + result);
+		return result;  
+   	}
 
 
 }

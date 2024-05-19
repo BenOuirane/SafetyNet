@@ -44,6 +44,55 @@ public class FirestationRepositoryImpl implements FirestationRepository {
 	
 	}
 
+	@Override
+	public void deleteFirestation(Firestation firestation)
+			throws NotFoundException {
+		if (!listFirestations.remove(firestation)) {
+			throw new NotFoundException();
+		}
+		
+	}
+
+	@Override
+	public void deleteFirestationsByAddress(String address) throws NotFoundException {
+           List<Firestation> firestations = this.getFirestationsByAddress(address) ;
+           for (Firestation f : firestations) {
+        	   this.deleteFirestation(f);
+           }
+		
+	}
+
+	@Override
+	public void deleteFirestationsByStationNumber(Integer stationNumber)
+			throws NotFoundException {
+        List<Firestation> firestations = this.getFirestationsByStationNumber(stationNumber);
+        for(Firestation f : firestations) {
+        	this.deleteFirestation(f);;
+        }
+	}
+
+	@Override
+	public List<Firestation> getFirestationsByAddress(String address)
+			throws NotFoundException {
+       List<Firestation> firestations = listFirestations.stream().filter(f ->f.getAddress().equals(address)).toList();
+       if(firestations.isEmpty()) {
+    	   throw new NotFoundException();
+       }else {
+    	   return firestations;
+       }
+	}
+
+	@Override
+	public List<Firestation> getFirestationsByStationNumber(
+			Integer stationNumber) throws NotFoundException {
+		 List<Firestation> firestations = listFirestations.stream().filter(f ->f.getStation().equals(stationNumber)).toList();
+	       if(firestations.isEmpty()) {
+	    	   throw new NotFoundException();
+	       }else {
+	    	   return firestations;
+	       }
+	}
+
 
 	 
 	

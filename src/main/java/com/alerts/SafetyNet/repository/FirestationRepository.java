@@ -26,6 +26,16 @@ public interface FirestationRepository{
      
      Firestation updateFirestation(Firestation firestation) throws NotFoundException;
      
+     void deleteFirestation(Firestation firestation) throws NotFoundException;
+     
+     void deleteFirestationsByAddress(String address) throws NotFoundException;
+     
+     void deleteFirestationsByStationNumber(Integer stationNumber) throws NotFoundException;
+     
+     List<Firestation> getFirestationsByAddress(String address) throws NotFoundException;
+     
+     List<Firestation> getFirestationsByStationNumber(Integer stationNumber) throws NotFoundException;
+     
      
      
      

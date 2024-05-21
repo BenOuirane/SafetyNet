@@ -24,6 +24,15 @@ public class JsonFileConstants {
 	public static final String firestation_address = "address";
 	public static final String firestation_station = "station";
 	
+	public static final String medicalrecords = "medicalrecords";
+	public static final String medicalrecord_firstName = "firstName";
+	public static final String medicalrecord_lastName = "lastName";
+	public static final String medicalrecord_birthdate = "birthdate";
+	public static final String medicalrecord_medications = "medications";
+	public static final String medicalrecord_allergies = "allergies";
+	
+	
+	
 	
 
 }

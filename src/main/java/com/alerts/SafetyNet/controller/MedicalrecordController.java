@@ -7,11 +7,13 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.alerts.SafetyNet.entity.MedicalRecord;
 import com.alerts.SafetyNet.exception.NotFoundException;
@@ -70,6 +72,28 @@ public class MedicalrecordController {
    		log.info("MedicalRecord Controller PUT Request result : " + updatedMedicalRecord);
    		return updatedMedicalRecord;
    	}
+   	
+   	/**
+	 * DELETE method of URL "/medicalrecord/delete"
+	 * 
+	 * @param firstName
+	 * @param lastName
+	 * @return ResponseEntity with success message and Http Status OK
+	 * @throws NotFoundException
+	 */
+	
+	@DeleteMapping("/delete")
+	public ResponseEntity<String> deletePerson(@RequestParam String firstName, @RequestParam String lastName)
+			throws NotFoundException {
+		log.info("MedicalRecord Controller DELETE Request start. Param firstName = " + firstName + " / lastName = " + lastName);
+		medicalrecordService.deleteByName(firstName, lastName);
+		ResponseEntity<String> deletedMedicalRecord  = ResponseEntity.status(HttpStatus.OK)
+				.body("The MedicalRecord has been succesfully deleted");
+		log.info("MedicalRecord Controller DELETE Request result : " + deletedMedicalRecord);
+		return deletedMedicalRecord;
+	}
+	
+	
     
 
 }

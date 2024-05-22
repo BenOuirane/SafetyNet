@@ -18,6 +18,7 @@ public interface MedicalrecordService {
 	List<MedicalRecord> getMedicalRecord();
 	MedicalRecord    createMedicalRecord(MedicalRecord m);
 	MedicalRecord    updateMedicalRecord(MedicalRecord m) throws NotFoundException;
+	void deleteByName(String firstName, String lastName)  throws NotFoundException;
     
     
 

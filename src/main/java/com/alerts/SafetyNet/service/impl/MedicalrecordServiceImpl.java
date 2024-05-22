@@ -39,4 +39,10 @@ public class MedicalrecordServiceImpl implements MedicalrecordService{
           return medicalrecordRepository.updateMedicalRecord(m);
 	}
 
+	@Override
+	public void deleteByName(String firstName, String lastName)
+			throws NotFoundException {
+            medicalrecordRepository.deleteMedicalRecordByName(firstName, lastName);		
+	}
+
 }

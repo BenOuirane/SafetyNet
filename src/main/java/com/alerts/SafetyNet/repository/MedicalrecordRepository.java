@@ -30,7 +30,11 @@ public interface MedicalrecordRepository {
      
      MedicalRecord getMedicalRecordByName(String firstName, String lastName) throws NotFoundException;
      
+     void deleteMedicalRecord(MedicalRecord medicalRecord) throws NotFoundException;
      
-
+     void deleteMedicalRecordByName(String firstName, String lastName) throws NotFoundException;
+     
+     
+  
 
 }

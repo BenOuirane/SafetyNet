@@ -59,6 +59,21 @@ public class MedicalrecordRepositoryImpl  implements MedicalrecordRepository{
     	   throw new NotFoundException();
        }       
 	}
+
+	@Override
+	public void deleteMedicalRecord(MedicalRecord medicalRecord)
+			throws NotFoundException {
+         if(!listMedicalRecords.remove(medicalRecord)) {
+        	 throw new NotFoundException();		
+         }
+	}
+
+	@Override
+	public void deleteMedicalRecordByName(String firstName, String lastName)
+			throws NotFoundException {
+		MedicalRecord medicalRecordToUpdate = getMedicalRecordByName(firstName,lastName);
+		deleteMedicalRecord(medicalRecordToUpdate);
+	}
 	
 	
 

@@ -78,7 +78,7 @@ public class PersonController {
             return new ResponseEntity<>(createdPerson, HttpStatus.OK);
         } catch (Exception e) {
             // Handle other exceptions (unchecked exceptions) separately
-            log.error("Person not created: " + e.getMessage());
+            log.error("Person not created: " + e.getMessage(), e); // Print stack trace for debugging
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred: " + e.getMessage());
         }
     }

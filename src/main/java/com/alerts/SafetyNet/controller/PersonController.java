@@ -65,10 +65,22 @@ public class PersonController {
 
     @PostMapping("/post")
     public ResponseEntity<?> createPerson(@RequestBody  Person p){
-	    	log.info("Person Controller POST Request start. Param person = " + p);
-    		Person creaedPerson = 	personService.createPersons(p);
-    		log.info("Person Controller POST Request result : " + creaedPerson);
-            return new ResponseEntity<>(creaedPerson, HttpStatus.OK);
+    	  // Perform validation using javax.validation annotations on the Person class
+        if (p.getFirstName() == null || p.getFirstName().isEmpty()) {
+            // If the first name is empty, return 400 Bad Request with an error message
+            return ResponseEntity.badRequest().body("First name cannot be empty");
+        }
+        try {
+            // If validation passes, continue with creation logic
+            log.info("Person Controller POST Request start. Param person = " + p);
+            Person createdPerson = personService.createPersons(p);
+            log.info("Person Controller POST Request result : " + createdPerson);
+            return new ResponseEntity<>(createdPerson, HttpStatus.OK);
+        } catch (Exception e) {
+            // Handle other exceptions (unchecked exceptions) separately
+            log.error("Person not created: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred: " + e.getMessage());
+        }
     }
     
     
@@ -82,10 +94,17 @@ public class PersonController {
     
 	@PutMapping("/put")
 	public ResponseEntity<Person> updatePerson(@RequestBody Person person) throws NotFoundException {
+        try {
+
 		log.info("Person Controller PUT Request start. Param person = " + person);
 		ResponseEntity<Person> result = new ResponseEntity<>(personService.updatePerson(person), HttpStatus.OK);
 		log.info("Person Controller PUT Request result : " + result);
 		return result;
+	        } catch (NotFoundException e) {
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            }
+	
+	
 	}
 	
 	/**
@@ -100,12 +119,17 @@ public class PersonController {
 	@DeleteMapping("/delete")
 	public ResponseEntity<String> deletePerson(@RequestParam String firstName, @RequestParam String lastName)
 			throws NotFoundException {
+		try {
 		log.info("Person Controller DELETE Request start. Param firstName = " + firstName + " / lastName = " + lastName);
 		personService.delete(firstName, lastName);
 		ResponseEntity<String> result = ResponseEntity.status(HttpStatus.OK)
-				.body("The Person has been succesfully deleted");
+				.body("The Person has been successfully deleted");
 		log.info("Person Controller DELETE Request result : " + result);
-		return result;
+		    return result;
+	  } catch (NotFoundException e) {
+        log.error("Person not found: " + e.getMessage());
+           return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Person not found: " + e.getMessage());
+    }
 	}
 	
 

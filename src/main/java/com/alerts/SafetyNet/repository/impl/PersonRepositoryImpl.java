@@ -65,4 +65,21 @@ public class PersonRepositoryImpl implements PersonRepository{
 				.collect(Collectors.toList());
 	}
 
+	@Override
+	public List<Person> getPersonsByLastName(List<String> lastname)
+			throws NotFoundException {
+		return listPersons.stream().filter(p -> lastname.stream().anyMatch(a -> a.equals(p.getLastName())))
+				.collect(Collectors.toList());
+	}
+
+	@Override
+	public List<Person> getPersonsByAddresse(String addresse)
+			throws NotFoundException {
+		return listPersons.stream().filter(p -> p.getAddress().equals(addresse))
+				.collect(Collectors.toList());
+	}
+	
+	
+	
+
 }

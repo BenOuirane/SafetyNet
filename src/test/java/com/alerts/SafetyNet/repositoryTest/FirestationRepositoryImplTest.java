@@ -9,17 +9,23 @@ import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.junit.jupiter.MockitoExtension;
+
 import com.alerts.SafetyNet.entity.Firestation;
 import com.alerts.SafetyNet.exception.NotFoundException;
 import com.alerts.SafetyNet.repository.impl.FirestationRepositoryImpl;
 
+@ExtendWith(MockitoExtension.class)
 public class FirestationRepositoryImplTest {
 
+    @InjectMocks
     private FirestationRepositoryImpl firestationRepository;
     
     @BeforeEach
     public void setup() {
-        firestationRepository = new FirestationRepositoryImpl();
+      //  firestationRepository = new FirestationRepositoryImpl();
     }
 
     @Test
@@ -262,5 +268,5 @@ public class FirestationRepositoryImplTest {
         	firestationRepository.getFirestationAddresses(1);
         });
     }
-    
+   
 }

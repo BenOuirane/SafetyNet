@@ -7,9 +7,10 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 import com.alerts.SafetyNet.entity.MedicalRecord;
 import com.alerts.SafetyNet.entity.Person;
 import com.alerts.SafetyNet.exception.NotFoundException;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@ExtendWith(MockitoExtension.class)
 public class MedicalrecordRepositoryImplTest {
 
     @InjectMocks
@@ -27,7 +29,7 @@ public class MedicalrecordRepositoryImplTest {
     private List<MedicalRecord> listMedicalRecords;
     @BeforeEach
     public void setUp() {
-        MockitoAnnotations.openMocks(this);
+      //  MockitoAnnotations.openMocks(this);
     }
 
     @Test

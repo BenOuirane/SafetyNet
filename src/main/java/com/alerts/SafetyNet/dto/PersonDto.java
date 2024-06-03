@@ -9,6 +9,7 @@ public class PersonDto {
     String zip;
     String phone;
     String email;
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -51,6 +52,7 @@ public class PersonDto {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public PersonDto(String firstName, String lastName, String address,
 			String city, String zip, String phone, String email) {
 		super();
@@ -62,12 +64,15 @@ public class PersonDto {
 		this.phone = phone;
 		this.email = email;
 	}
+	
 	@Override
 	public String toString() {
 		return "PersonDto [firstName=" + firstName + ", lastName=" + lastName
 				+ ", address=" + address + ", city=" + city + ", zip=" + zip
-				+ ", phone=" + phone + ", email=" + email + "]";
+				+ ", phone=" + phone + ", email=" + email + 
+				 "]";
 	}
+	
 	public PersonDto() {
 		super();
 	}

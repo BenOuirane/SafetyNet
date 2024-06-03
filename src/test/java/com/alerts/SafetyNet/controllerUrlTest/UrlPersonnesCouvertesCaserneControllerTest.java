@@ -34,7 +34,7 @@ public class UrlPersonnesCouvertesCaserneControllerTest {
 	        dto.setChildrenNumber(1);
 	        dto.setPersons(List.of(new PersonDto("John", "Doe", "", "", "", "", ""), new PersonDto("Jane", "Doe", "", "", "", "", "")));
 	        when(urlPersonnesCouvertesCaserneService.urlPersonnesCouvertesCaserneService(anyInt())).thenReturn(dto);
-	        mockMvc.perform(get("/covergePerson/get")
+	        mockMvc.perform(get("/firestation")
 	                .param("numberOfStation", "1")
 	                .contentType(MediaType.APPLICATION_JSON))
 	                .andExpect(status().isOk())

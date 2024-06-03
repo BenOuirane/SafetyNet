@@ -5,8 +5,6 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import com.alerts.SafetyNet.configuration.DtoConstants;
 import com.alerts.SafetyNet.dto.PersonDto;
 import com.alerts.SafetyNet.dto.UrlPersonnesCouvertesCaserneDTO;
@@ -26,11 +24,10 @@ public class UrlPersonnesCouvertesCaserneService {
 	FirestationRepository firestationRepository;
 	@Autowired
 	MedicalrecordRepository medicalRecordRepository;
-	
 	@Autowired
 	ObjectDtoConverterService dtoService;
 	
-	public UrlPersonnesCouvertesCaserneDTO urlPersonnesCouvertesCaserneService (@RequestParam Integer stationNumber) throws NotFoundException {
+	public UrlPersonnesCouvertesCaserneDTO urlPersonnesCouvertesCaserneService (Integer stationNumber) throws NotFoundException {
 	
 				List<String> addresses = firestationRepository.getFirestationAddresses(stationNumber);
 				List<Person> personsCovered = personRepository.getPersonsByAddresses(addresses);

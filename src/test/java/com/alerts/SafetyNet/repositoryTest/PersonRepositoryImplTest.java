@@ -1,6 +1,7 @@
 package com.alerts.SafetyNet.repositoryTest;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -8,15 +9,19 @@ import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import com.alerts.SafetyNet.entity.Person;
 import com.alerts.SafetyNet.exception.NotFoundException;
 import com.alerts.SafetyNet.repository.impl.PersonRepositoryImpl;
 
+@ExtendWith(MockitoExtension.class)
 public class PersonRepositoryImplTest {
 
     @Mock
@@ -132,6 +137,61 @@ public class PersonRepositoryImplTest {
         // Assert the results
         assertEquals(1, result.size());
         assertEquals("John", result.get(0).getFirstName());
+    }
+    
+    @Test
+    public void testGetPersonsByLastName_Success() throws NotFoundException {
+    	// Initialize the listPersons with one test data
+    	Person johnDoe = new Person("John", "Doe", "123 Main St", "Anytown", "12345", "555-1234", "john.doe@example.com");
+        personRepository.addPerson(johnDoe); // Assuming a method to set the list of persons
+        // Define the last names to search for
+        List<String> lastNames = Arrays.asList("Doe");
+        // Call the method
+        List<Person> result = personRepository.getPersonsByLastName(lastNames);
+        // Assert the correct person is returned
+        assertEquals(1, result.size());
+        assertEquals("John", result.get(0).getFirstName());
+        assertEquals("Doe", result.get(0).getLastName());
+    }
+    
+    @Test
+    public void testGetPersonsByLastName_NotFound() throws NotFoundException {
+        // Initialize the listPersons with one test data
+        Person johnDoe = new Person("John", "Doe", "123 Main St", "Anytown", "12345", "555-1234", "john.doe@example.com");
+        personRepository.addPerson(johnDoe);
+        // Define the last names to search for
+        List<String> lastNames = Arrays.asList("NonExistent");
+        // Call the method and expect an empty list
+        List<Person> result = personRepository.getPersonsByLastName(lastNames);
+        // Assert that no persons are returned
+        assertEquals(0, result.size());
+    }
+    
+    @Test
+    public void testGetPersonsByAddresse_Success() throws NotFoundException {
+        // Arrange
+        Person person = new Person("John", "Doe", "123 Main St", "Springfield", "12345", "123-456-7890", "john.doe@example.com");
+        personRepository.addPerson(person);
+        // Act
+        List<Person> result = personRepository.getPersonsByAddresse("123 Main St");
+        // Assert
+        assertNotNull(result);
+        assertEquals(1, result.size());
+        assertEquals(person, result.get(0));
+    }
+    
+    @Test
+    public void testGetPersonsByAddresse_NotFound() {
+        // Arrange
+    	  Person person = new Person("John", "Doe", "123 Main St", "Springfield", "12345", "123-456-7890", "john.doe@example.com");
+          personRepository.addPerson(person);
+        // Act & Assert
+        assertThrows(NotFoundException.class, () -> {
+            List<Person> result = personRepository.getPersonsByAddresse("456 Elm St");
+            if (result.isEmpty()) {
+                throw new NotFoundException();
+            }
+        });
     }
     
 }

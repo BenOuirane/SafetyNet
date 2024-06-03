@@ -3,9 +3,7 @@ package com.alerts.SafetyNet.entity;
  * Class: Firestation
  * @author: BEN OUIRANE Hajer
  */
-
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 
 public class Firestation {
 
@@ -37,9 +35,5 @@ public class Firestation {
 	public Firestation() {
 		super();
 	}
-	
-	
-	
-	
 	
 }

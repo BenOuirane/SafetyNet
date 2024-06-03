@@ -1,10 +1,8 @@
 package com.alerts.SafetyNet.loadservice;
 
 import java.io.IOException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.alerts.SafetyNet.configuration.JsonFileConstants;
 import com.alerts.SafetyNet.entity.Person;
 import com.alerts.SafetyNet.repository.impl.PersonRepositoryImpl;
@@ -19,10 +17,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 @Service
 public class LoadPersonsService {
 	
-	
-	@Autowired
+	 @Autowired
 	 PersonRepositoryImpl personRepository;
-	
 	/**
 	 * Import Json data into Person Repository
 	 * 
@@ -31,7 +27,6 @@ public class LoadPersonsService {
 	 */
 	
 	public void loadPersons(JsonNode personsNode) throws IOException {
-
 		for (JsonNode personNode : personsNode) {
 			Person person = new Person();
 			person.setFirstName(personNode.path(JsonFileConstants.person_firstName).asText());
@@ -41,9 +36,8 @@ public class LoadPersonsService {
 			person.setZip(personNode.path(JsonFileConstants.person_zip).asText());
 			person.setPhone(personNode.path(JsonFileConstants.person_phone).asText());
 			person.setEmail(personNode.path(JsonFileConstants.person_email).asText());
-
 			personRepository.addPerson(person);
 		}
-
 	}
+	
 }

@@ -1,8 +1,7 @@
 package com.alerts.SafetyNet.dto;
 
 public class PersonDto {
-	
-	
+
     String firstName;
     String lastName;
     String address;
@@ -73,9 +72,4 @@ public class PersonDto {
 		super();
 	}
 	
-    
-    
-	
-	
-
 }

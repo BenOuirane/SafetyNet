@@ -11,7 +11,6 @@ import com.alerts.SafetyNet.exception.NotFoundException;
  *
  */
 
-
 public interface FirestationService {
 	
 	List<Firestation> getFirestation();
@@ -20,6 +19,5 @@ public interface FirestationService {
 	void deleteFirestation(Firestation f) throws NotFoundException;
 	void deleteFirestationsByAddress(String address) throws NotFoundException;
 	void deleteFirestationsByStationNumber(Integer stationNumber) throws NotFoundException;
-
 
 }

@@ -10,7 +10,6 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
 public class MedicalRecord {
 
 	@JsonProperty("firstName")
@@ -71,10 +70,5 @@ public class MedicalRecord {
 	public MedicalRecord() {
 		super();
 	}
-	
-	
-	
-	
-	
 
 }

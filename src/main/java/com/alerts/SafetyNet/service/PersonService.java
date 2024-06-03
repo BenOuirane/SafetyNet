@@ -11,8 +11,6 @@ import com.alerts.SafetyNet.exception.NotFoundException;
  *
  */
 
-
-
 public interface PersonService {
 	
 	List<Person> getPerson();

@@ -5,9 +5,7 @@ import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.stereotype.Service;
-
 import com.alerts.SafetyNet.entity.MedicalRecord;
 import com.alerts.SafetyNet.entity.Person;
 import com.alerts.SafetyNet.exception.NotFoundException;
@@ -18,11 +16,9 @@ public class MedicalrecordRepositoryImpl  implements MedicalrecordRepository{
 	
 	private List<MedicalRecord> listMedicalRecords = new ArrayList<>();
 
-
 	@Override
 	public void setListMedicalRecords(List<MedicalRecord> listMedicalRecords) {
 		this.listMedicalRecords = listMedicalRecords;
-		
 	}
 
 	@Override
@@ -43,9 +39,7 @@ public class MedicalrecordRepositoryImpl  implements MedicalrecordRepository{
 		MedicalRecord medicalRecordToUpdate = getMedicalRecordByName(medicalRecord.getFirstName(),
 				                                  medicalRecord.getLastName());
 		int medicalRecordToUpdateIndex = listMedicalRecords.indexOf(medicalRecordToUpdate);
-		
 		listMedicalRecords.set(medicalRecordToUpdateIndex, medicalRecord);
-		
 		return medicalRecord;
 	}
 
@@ -113,9 +107,5 @@ public class MedicalrecordRepositoryImpl  implements MedicalrecordRepository{
 		return false;
 		}
 	}
-	
-
-	
-	
 
 }

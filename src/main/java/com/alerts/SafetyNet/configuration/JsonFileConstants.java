@@ -1,7 +1,5 @@
 package com.alerts.SafetyNet.configuration;
 
-
-
 /**
  * Fields names in Json input file
  * 
@@ -9,7 +7,6 @@ package com.alerts.SafetyNet.configuration;
  *
  */
 public class JsonFileConstants {
-	
 	
 	public static final String persons = "persons";
 	public static final String person_firstName = "firstName";
@@ -31,8 +28,4 @@ public class JsonFileConstants {
 	public static final String medicalrecord_medications = "medications";
 	public static final String medicalrecord_allergies = "allergies";
 	
-	
-	
-	
-
 }

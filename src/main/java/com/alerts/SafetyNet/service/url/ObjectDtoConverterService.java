@@ -1,7 +1,6 @@
 package com.alerts.SafetyNet.service.url;
 
 import org.springframework.stereotype.Service;
-
 import com.alerts.SafetyNet.configuration.DtoConstants.PersonField;
 import com.alerts.SafetyNet.dto.PersonDto;
 import com.alerts.SafetyNet.entity.Person;
@@ -58,8 +57,7 @@ public class ObjectDtoConverterService {
 		return personDto;
 	}
 		
-		
-		
+	
 	}
 	
 	

@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.alerts.SafetyNet.configuration.JsonFileConstants;
@@ -23,7 +22,6 @@ public class LoadMedicalRecordsService {
 	@Autowired
 	private MedicalrecordRepository medicalRecordRepository;
 	
-	
 	/**
 	 * Import Json data into MedicalRecord Repository
 	 * @param medicalrecordsNode 
@@ -34,15 +32,13 @@ public class LoadMedicalRecordsService {
 		medicalRecord.setFirstName(medicalRecordNode.path(JsonFileConstants.medicalrecord_firstName).asText());
 		medicalRecord.setLastName(medicalRecordNode.path(JsonFileConstants.medicalrecord_lastName).asText());
 		medicalRecord.setBirthdate(this.stringToDate(medicalRecordNode.path(JsonFileConstants.medicalrecord_birthdate).asText()));
-		
 		// medications
 					List<String> medications = new ArrayList<>();
 					JsonNode medicationData = medicalRecordNode.path(JsonFileConstants.medicalrecord_medications);
 					for (JsonNode medicalrecordNode : medicationData) {
 						medications.add(medicalrecordNode.asText());
 					}
-					medicalRecord.setMedications(medications);
-					
+					medicalRecord.setMedications(medications);	
 	    // allergies
 					List<String> allergies = new ArrayList<>();
 					JsonNode allergiesData = medicalRecordNode.path(JsonFileConstants.medicalrecord_allergies);
@@ -50,23 +46,13 @@ public class LoadMedicalRecordsService {
 						allergies.add(allergieNode.asText());
 					}
 					medicalRecord.setAllergies(allergies);
-
 					medicalRecordRepository.addMedicalRecord(medicalRecord);			
-					
-		
 		}
-		
 	}
-	
-	
 	
 	public LocalDate stringToDate(String strDate) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 		return LocalDate.parse(strDate, formatter);
 	}
 	
-	
-	
-	
-
 }

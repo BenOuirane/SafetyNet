@@ -14,7 +14,6 @@ import com.alerts.SafetyNet.exception.NotFoundException;
 import com.alerts.SafetyNet.service.url.UrlPersonnesCouvertesCaserneService;
 import lombok.extern.log4j.Log4j2;
 
-
 /**
  * URL "{@code /firestationCoverage?stationNumber=<station_number>}" <br>
  * <br>
@@ -36,12 +35,9 @@ public class UrlPersonnesCouvertesCaserneController {
 	
     private static final Logger log = LogManager.getLogger(UrlPersonnesCouvertesCaserneController.class.getName());
 
-	
     @Autowired
 	UrlPersonnesCouvertesCaserneService  urlPersonnesCouvertesCaserneService;
-    
-    
-    
+   
     /**
 	 * get method of URL "/covergePerson/get"
 	 * 
@@ -66,6 +62,4 @@ public class UrlPersonnesCouvertesCaserneController {
     }
 	}
 	
-    
-
 }

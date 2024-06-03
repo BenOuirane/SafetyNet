@@ -7,7 +7,6 @@ package com.alerts.SafetyNet.service.impl;
  */
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.alerts.SafetyNet.entity.MedicalRecord;
@@ -20,7 +19,6 @@ public class MedicalrecordServiceImpl implements MedicalrecordService{
 	
     @Autowired
     MedicalrecordRepository    medicalrecordRepository;
-  
 
 	@Override
 	public List<MedicalRecord> getMedicalRecord() {

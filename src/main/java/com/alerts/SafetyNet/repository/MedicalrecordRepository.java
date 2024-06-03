@@ -7,46 +7,29 @@ package com.alerts.SafetyNet.repository;
  */
 
 import org.springframework.stereotype.Repository;
-
 import com.alerts.SafetyNet.entity.MedicalRecord;
 import com.alerts.SafetyNet.entity.Person;
 import com.alerts.SafetyNet.exception.NotFoundException;
-
 import java.time.LocalDate;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 
 @Repository
 public interface MedicalrecordRepository {
 	
      static final Logger logger = LogManager.getLogger(MedicalrecordRepository.class);
      
-     void setListMedicalRecords(List<MedicalRecord> listMedicalRecords);
-     
+     void setListMedicalRecords(List<MedicalRecord> listMedicalRecords); 
      MedicalRecord addMedicalRecord(MedicalRecord medicalRecord);
-     
      public   List<MedicalRecord> getMedicalRecord();
-
      MedicalRecord  updateMedicalRecord(MedicalRecord medicalRecord) throws NotFoundException;
-     
      MedicalRecord getMedicalRecordByName(String firstName, String lastName) throws NotFoundException;
-     
      void deleteMedicalRecord(MedicalRecord medicalRecord) throws NotFoundException;
-     
      void deleteMedicalRecordByName(String firstName, String lastName) throws NotFoundException;
-     
-     public int calculateAge(LocalDate birthdate);
-     
+     public int calculateAge(LocalDate birthdate);   
      public Integer havePersonAge(Person p) throws NotFoundException;
-     
      public boolean ifAdult(Person p);
-     
      public boolean ifChild(Person p);
 	 
-     
-     
-  
-
 }

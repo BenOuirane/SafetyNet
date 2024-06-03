@@ -5,12 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
 import org.springframework.stereotype.Service;
 import com.alerts.SafetyNet.entity.Person;
 import com.alerts.SafetyNet.exception.NotFoundException;
 import com.alerts.SafetyNet.repository.PersonRepository;
-
 
 @Service
 public class PersonRepositoryImpl implements PersonRepository{
@@ -22,14 +20,12 @@ public class PersonRepositoryImpl implements PersonRepository{
 		return listPersons;
 	}
 	
-	
 	@Override
     public Person addPerson(Person person)  {
         listPersons.add(person);
 		return person;
 
     }
-
 
 	@Override
 	public Person updatePerson(Person person) throws NotFoundException {
@@ -45,15 +41,12 @@ public class PersonRepositoryImpl implements PersonRepository{
 		}
 	}
 
-
-
 	@Override
 	public void deletePerson(Person person) throws NotFoundException {
 		if (!listPersons.remove(person)) {
 			throw new NotFoundException();
 		}		
 	}
-
 
 	@Override
 	public void deletePersonByName(String firstName, String lastName) throws NotFoundException {
@@ -71,8 +64,5 @@ public class PersonRepositoryImpl implements PersonRepository{
 		return listPersons.stream().filter(p -> addresses.stream().anyMatch(a -> a.equals(p.getAddress())))
 				.collect(Collectors.toList());
 	}
-	
-
-	
 
 }

@@ -11,7 +11,6 @@ import com.alerts.SafetyNet.repository.FirestationRepository;
 @Service
 public class FirestationRepositoryImpl implements FirestationRepository {
 	
-	
 	 List<Firestation> listFirestations = new ArrayList<>();
 	 
 	 public void setListFirestations(List<Firestation> listFirestations) {
@@ -40,8 +39,6 @@ public class FirestationRepositoryImpl implements FirestationRepository {
 		} else {
 			throw new NotFoundException();
 		}
-
-	
 	}
 
 	@Override
@@ -100,10 +97,5 @@ public class FirestationRepositoryImpl implements FirestationRepository {
 		List<String> adresses = firestations.stream().map(f -> f.getAddress()).toList();
 		return adresses;
 	}
-
-
-	 
-	
-	
 
 }

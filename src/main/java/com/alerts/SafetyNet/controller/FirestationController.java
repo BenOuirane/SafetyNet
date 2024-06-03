@@ -20,7 +20,6 @@ import lombok.extern.log4j.Log4j2;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-
 /**
  * Endpoint "/firestation".<br>
  * 
@@ -41,7 +40,6 @@ import org.apache.logging.log4j.Logger;
 public class FirestationController {
 	
 	private static final Logger log = LogManager.getLogger(FirestationController.class.getName());
-    
     @Autowired
     FirestationService firestationService;
     
@@ -59,7 +57,6 @@ public class FirestationController {
 	 * @param Firestation
 	 * @return ResponseEntity with Firestation createFirestation and Http Status OK
 	 */
-
 
     @PostMapping("/post")
     public ResponseEntity<?> createFirestation(@RequestBody  Firestation f){
@@ -126,6 +123,5 @@ public class FirestationController {
 		log.info("Firestation Controller DELETE Request result : " + result);
 		return result;  
    	}
-
 
 }

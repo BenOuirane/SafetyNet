@@ -20,20 +20,15 @@ import com.alerts.SafetyNet.repository.PersonRepository;
 @Service
 public class UrlPersonnesCouvertesCaserneService {
 	
-	
 	@Autowired
 	PersonRepository personRepository;
-
 	@Autowired
 	FirestationRepository firestationRepository;
-
 	@Autowired
 	MedicalrecordRepository medicalRecordRepository;
 	
-	
 	@Autowired
 	ObjectDtoConverterService dtoService;
-	
 	
 	public UrlPersonnesCouvertesCaserneDTO urlPersonnesCouvertesCaserneService (@RequestParam Integer stationNumber) throws NotFoundException {
 	
@@ -44,15 +39,12 @@ public class UrlPersonnesCouvertesCaserneService {
 										.collect(Collectors.toList());
 				// calculate counts
 				long adultsCount = personsCovered.stream().filter(p -> medicalRecordRepository.ifAdult(p)).count();
-
 				long childrenCount = personsCovered.stream().filter(p -> medicalRecordRepository.ifChild(p)).count();
-				
 				// create the final DTO object that will be returned by URL Controller
 				UrlPersonnesCouvertesCaserneDTO personnesCouvertesCaserneDTO = new UrlPersonnesCouvertesCaserneDTO();
 				personnesCouvertesCaserneDTO.setPersons(personsConvertedDTO);
 				personnesCouvertesCaserneDTO.setAdultsNumber((int) (adultsCount));
 				personnesCouvertesCaserneDTO.setChildrenNumber((int) (childrenCount));
-				
 				return personnesCouvertesCaserneDTO;
 	
 	}

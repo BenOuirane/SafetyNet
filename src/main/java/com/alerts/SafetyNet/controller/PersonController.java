@@ -44,8 +44,6 @@ public class PersonController {
     
     @Autowired
     PersonService personService;
-   
-    
     
     @GetMapping("/getPersons")
     public ResponseEntity<?> getPersons() {
@@ -61,7 +59,6 @@ public class PersonController {
 	 * @param person
 	 * @return ResponseEntity with Person creaedPerson and Http Status OK
 	 */
-
 
     @PostMapping("/post")
     public ResponseEntity<?> createPerson(@RequestBody  Person p){
@@ -83,7 +80,6 @@ public class PersonController {
         }
     }
     
-    
     /**
 	 * UPDATE method of URL "/person/put"
 	 * 
@@ -95,7 +91,6 @@ public class PersonController {
 	@PutMapping("/put")
 	public ResponseEntity<Person> updatePerson(@RequestBody Person person) throws NotFoundException {
         try {
-
 		log.info("Person Controller PUT Request start. Param person = " + person);
 		ResponseEntity<Person> result = new ResponseEntity<>(personService.updatePerson(person), HttpStatus.OK);
 		log.info("Person Controller PUT Request result : " + result);
@@ -103,8 +98,6 @@ public class PersonController {
 	        } catch (NotFoundException e) {
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
             }
-	
-	
 	}
 	
 	/**
@@ -131,6 +124,5 @@ public class PersonController {
            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Person not found: " + e.getMessage());
     }
 	}
-	
 
 }

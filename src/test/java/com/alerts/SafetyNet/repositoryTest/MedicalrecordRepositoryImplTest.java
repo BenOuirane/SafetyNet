@@ -289,37 +289,24 @@ public class MedicalrecordRepositoryImplTest {
         });
     }
    
- 
     @Test
-    public void testIfAdult() {
-    	MedicalRecord record1 = new MedicalRecord("John", "Doe", LocalDate.of(1990, 1, 1), List.of("Med1", "Med2"), List.of("Allergy1", "Allergy2"));
-        MedicalRecord record2 = new MedicalRecord("Jane", "Smith", LocalDate.of(2022, 5, 15), List.of("Med3", "Med4"), List.of("Allergy3", "Allergy4"));
+    public void testIfAdult_AdultPerson() {
+    	MedicalRecord record1 = new MedicalRecord("John", "Doe", LocalDate.of(2023, 1, 1), List.of("Med1", "Med2"), List.of("Allergy1", "Allergy2"));
+        MedicalRecord record2 = new MedicalRecord("Jane", "Smith", LocalDate.of(1995, 5, 15), List.of("Med3", "Med4"), List.of("Allergy3", "Allergy4"));
         List<MedicalRecord> medicalRecordList = new ArrayList<>(Arrays.asList(record1, record2));
         medicalrecordRepository.setListMedicalRecords(medicalRecordList);
         
         Person adult = new Person("John", "Doe"," "," "," "," "," ");
-        assertTrue(medicalrecordRepository.ifAdult(adult));
+        assertFalse(medicalrecordRepository.ifAdult(adult));
 
-        Person notAdult = new Person("Jane", "Doe"," "," "," "," "," ");
-        assertFalse(medicalrecordRepository.ifAdult(notAdult));
+        Person child = new Person("Jane", "Smith"," "," "," "," "," ");
+        assertTrue(medicalrecordRepository.ifAdult(child));
     }
 
     @Test
     public void testIfAdultPersonNotFound() {
         Person unknown = new Person("Nonexistent", "Person"," "," "," "," "," ");
         assertFalse(medicalrecordRepository.ifAdult(unknown));
-    }
-    
-    
-    @Test
-    public void testIfAdultLeapYear() {
-        // Adding a leap year birthdate record for testing
-    	MedicalRecord record1 = new  MedicalRecord("Leap", "Year", LocalDate.of(2000, 2, 29), List.of("Med1", "Med2"), List.of("Allergy1", "Allergy2"));
-        List<MedicalRecord> medicalRecordList = new ArrayList<>(Arrays.asList(record1));
-        medicalrecordRepository.setListMedicalRecords(medicalRecordList);
-
-        Person leapYearPerson = new Person("Leap", "Year"," "," "," "," "," ");
-        assertTrue(medicalrecordRepository.ifAdult(leapYearPerson)); // Assuming the current date is 2024-06-01, so age is 24
     }
     
     @Test

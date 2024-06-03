@@ -6,14 +6,11 @@ import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
 import com.alerts.SafetyNet.dto.PersonDto;
 import com.alerts.SafetyNet.dto.UrlPersonnesCouvertesCaserneDTO;
 import com.alerts.SafetyNet.entity.Person;
@@ -50,9 +47,6 @@ public class UrlPersonnesCouvertesCaserneServiceTest {
                 new Person("John", "Doe", "123 Main St", "", "", "", ""),
                 new Person("Jane", "Doe", "456 Elm St", "", "", "", "")
         );
-        List<PersonDto> personsConvertedDTO = personsCovered.stream()
-                .map(person -> new PersonDto(person.getFirstName(), person.getLastName(), "", "", "", "", ""))
-                .collect(Collectors.toList());
 
         // Simulation des réponses des repositories et du service de conversion DTO
         when(firestationRepository.getFirestationAddresses(stationNumber)).thenReturn(addresses);

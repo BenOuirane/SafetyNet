@@ -72,15 +72,7 @@ public class PersonRepositoryImpl implements PersonRepository{
 				.collect(Collectors.toList());
 	}
 	
-	/*
-	@Override
-	public List<Person> getPersonsByName(String firstName, String lastName) throws NotFoundException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-   */
 
-	
 	
 
 }

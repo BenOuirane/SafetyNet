@@ -1,6 +1,5 @@
 package com.alerts.SafetyNet.controllerTest;
 
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThrows;
@@ -20,7 +19,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -55,7 +53,6 @@ public class FirestationControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
 
-
     @BeforeEach
     public void setup() {
         MockitoAnnotations.openMocks(this);
@@ -68,21 +65,16 @@ public class FirestationControllerTest {
         Firestation firestation1 = new Firestation("123 Main St", 1);
         Firestation firestation2 = new Firestation("456 Elm St", 2);
         List<Firestation> expectedFirestations = Arrays.asList(firestation1, firestation2);
-
         when(firestationService.getFirestation()).thenReturn(expectedFirestations);
-
         // Act & Assert
         MvcResult result = mockMvc.perform(get("/firestation/getFirestations"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andReturn();
-
         String content = result.getResponse().getContentAsString();
         JSONArray jsonArray = new JSONArray(content);
-
         // Assert the size of the returned JSON array
         assertEquals(2, jsonArray.length());
-
         // Assert the content of each JSON object
         assertEquals(1, jsonArray.getJSONObject(0).getInt("station"));
         assertEquals("123 Main St", jsonArray.getJSONObject(0).getString("address"));
@@ -95,13 +87,11 @@ public class FirestationControllerTest {
     	// Arrange
         Firestation firestation = new Firestation("123 Main St", 1);
         when(firestationService.createFirestations(firestation)).thenReturn(firestation);
-
         // Act & Assert
         mockMvc.perform(post("/firestation/post")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(firestation)))
                 .andExpect(status().isOk());
-          
     }
     
     @Test
@@ -109,7 +99,6 @@ public class FirestationControllerTest {
     	// Arrange
         Firestation firestation = new Firestation("123 Main St", 1);
         when(firestationService.createFirestations(any(Firestation.class))).thenThrow(new RuntimeException("Service exception"));
-
         // Act & Assert
         mockMvc.perform(post("/firestation/post")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -118,25 +107,19 @@ public class FirestationControllerTest {
                 .andExpect(content().string("Internal Server Error"));
     }
     
-    
     @Test
     public void testUpdatePersonSuccess_shouldGive200Ok() throws Exception {
     	// Create an existing Firestation object
         Firestation firestation = new Firestation();
         firestation.setAddress("Test Station");
-
         // Simulate the updated data
         String updatedAddress = "Updated Station";
-
         // Mock the service to update the Firestation object
         when(firestationService.updateFirestation(any(Firestation.class))).thenAnswer(invocation -> {
-
-            // Update the existing Firestation object with the simulated updated data
+        // Update the existing Firestation object with the simulated updated data
             firestation.setAddress(updatedAddress);
-
             return firestation; // Return the updated Firestation object
         });
-
         // Perform the PUT request to update the Firestation
         mockMvc.perform(put("/firestation/put")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -150,26 +133,20 @@ public class FirestationControllerTest {
     public void testUpdatePersonNotFoundException_shouldGive404NotFound() throws Exception {
     	Firestation firestation = new Firestation();
         firestation.setAddress("Test Station");
-
         // Configure the mock to throw a NotFoundException when updateFirestation is called with the provided Firestation object
         doThrow(new NotFoundException()).when(firestationService).updateFirestation(any(Firestation.class));
-
-            // Perform the PUT request
+        // Perform the PUT request
             mockMvc.perform(put("/firestation/put")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(objectMapper.writeValueAsString(firestation)))
                     .andExpect(status().isNotFound());
-    
     }
-
 
     @Test
     public void testUpdatePersonGeneralException_ShouldReturn500InternalServerError() throws Exception {
         Firestation firestation = new Firestation();
         firestation.setAddress("Test Station");
-
         doThrow(new RuntimeException("Unexpected error")).when(firestationService).updateFirestation(any(Firestation.class));
-
         mockMvc.perform(put("/firestation/put")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(firestation)))
@@ -179,7 +156,6 @@ public class FirestationControllerTest {
     @Test
     public void testDeleteFirestationsByAddressSuccess_shouldGive200Ok() throws Exception {
         String address = "123 Main St";
-
         // Mock service method to verify deleteFirestationsByAddress is called with the provided address
         doNothing().when(firestationService).deleteFirestationsByAddress(address);
 
@@ -187,7 +163,6 @@ public class FirestationControllerTest {
                 .param("address", address))
                 .andExpect(status().isOk())
                 .andExpect(content().string("Firestation(s) successfully deleted"));
-
         // Verify that the service method was called with the provided address
         verify(firestationService, times(1)).deleteFirestationsByAddress(address);
     }
@@ -195,32 +170,25 @@ public class FirestationControllerTest {
     @Test
     public void testDeleteFirestationsByStationNumberSuccess_shouldGive200Ok() throws Exception {
         int stationNumber = 1;
-
         // Mock service method to verify deleteFirestationsByStationNumber is called with the provided station number
         doNothing().when(firestationService).deleteFirestationsByStationNumber(stationNumber);
-
         mockMvc.perform(delete("/firestation/delete")
                 .param("stationNumber", String.valueOf(stationNumber)))
                 .andExpect(status().isOk())
                 .andExpect(content().string("Firestation(s) successfully deleted"));
-
         // Verify that the service method was called with the provided station number
         verify(firestationService, times(1)).deleteFirestationsByStationNumber(stationNumber);
     }
-    
 
     @Test
     public void testdeleteFirestations_shouldThrowIllegalArgumentException_whenNoParamsProvided() {
         Optional<String> address = Optional.empty();
         Optional<Integer> stationNumber = Optional.empty();
-
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             firestationController.deleteFirestations(address, stationNumber);
         });
-
         assertNotNull(exception);
         assertEquals("java.lang.IllegalArgumentException", exception.getClass().getName());
     }
-    
     
 }

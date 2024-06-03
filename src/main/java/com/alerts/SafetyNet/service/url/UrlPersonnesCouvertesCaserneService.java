@@ -35,7 +35,7 @@ public class UrlPersonnesCouvertesCaserneService {
 	ObjectDtoConverterService dtoService;
 	
 	
-	public UrlPersonnesCouvertesCaserneDTO UrlPersonnesCouvertesCaserneService (@RequestParam Integer stationNumber) throws NotFoundException {
+	public UrlPersonnesCouvertesCaserneDTO urlPersonnesCouvertesCaserneService (@RequestParam Integer stationNumber) throws NotFoundException {
 	
 				List<String> addresses = firestationRepository.getFirestationAddresses(stationNumber);
 				List<Person> personsCovered = personRepository.getPersonsByAddresses(addresses);

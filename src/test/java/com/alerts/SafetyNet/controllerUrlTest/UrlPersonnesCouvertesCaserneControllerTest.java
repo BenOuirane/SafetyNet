@@ -5,7 +5,6 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +24,6 @@ public class UrlPersonnesCouvertesCaserneControllerTest {
 	
 	    @Autowired
 	    private MockMvc mockMvc;
-
 	    @MockBean
 	    private UrlPersonnesCouvertesCaserneService urlPersonnesCouvertesCaserneService;
 
@@ -35,9 +33,7 @@ public class UrlPersonnesCouvertesCaserneControllerTest {
 	        dto.setAdultsNumber(1);
 	        dto.setChildrenNumber(1);
 	        dto.setPersons(List.of(new PersonDto("John", "Doe", "", "", "", "", ""), new PersonDto("Jane", "Doe", "", "", "", "", "")));
-
-	        when(urlPersonnesCouvertesCaserneService.UrlPersonnesCouvertesCaserneService(anyInt())).thenReturn(dto);
-
+	        when(urlPersonnesCouvertesCaserneService.urlPersonnesCouvertesCaserneService(anyInt())).thenReturn(dto);
 	        mockMvc.perform(get("/covergePerson/get")
 	                .param("numberOfStation", "1")
 	                .contentType(MediaType.APPLICATION_JSON))
@@ -50,8 +46,7 @@ public class UrlPersonnesCouvertesCaserneControllerTest {
 
 	    @Test
 	    public void testPersonnesCouvertesCaserne_NotFound() throws Exception {
-	        when(urlPersonnesCouvertesCaserneService.UrlPersonnesCouvertesCaserneService(anyInt())).thenThrow(new NotFoundException());
-
+	        when(urlPersonnesCouvertesCaserneService.urlPersonnesCouvertesCaserneService(anyInt())).thenThrow(new NotFoundException());
 	        mockMvc.perform(get("/covergePerson/get")
 	                .param("numberOfStation", "1")
 	                .contentType(MediaType.APPLICATION_JSON))

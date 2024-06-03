@@ -2,10 +2,8 @@ package com.alerts.SafetyNet.urlServiceTest;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import com.alerts.SafetyNet.configuration.DtoConstants.PersonField;
 import com.alerts.SafetyNet.dto.PersonDto;
 import com.alerts.SafetyNet.entity.Person;
@@ -30,11 +28,8 @@ public class ObjectDtoConverterServiceTest {
 	        person.setZip("12345");
 	        person.setPhone("555-1234");
 	        person.setEmail("john.doe@example.com");
-
 	        PersonField[] fields = PersonField.values();
-
 	        PersonDto personDto = objectDtoConverterService.buildPersonDto(person, fields);
-
 	        assertEquals("John", personDto.getFirstName());
 	        assertEquals("Doe", personDto.getLastName());
 	        assertEquals("123 Main St", personDto.getAddress());
@@ -54,11 +49,8 @@ public class ObjectDtoConverterServiceTest {
 	        person.setZip("12345");
 	        person.setPhone("555-1234");
 	        person.setEmail("john.doe@example.com");
-
 	        PersonField[] fields = { PersonField.FIRST_NAME, PersonField.LAST_NAME, PersonField.EMAIL };
-
 	        PersonDto personDto = objectDtoConverterService.buildPersonDto(person, fields);
-
 	        assertEquals("John", personDto.getFirstName());
 	        assertEquals("Doe", personDto.getLastName());
 	        assertNull(personDto.getAddress());
@@ -78,11 +70,8 @@ public class ObjectDtoConverterServiceTest {
 	        person.setZip("12345");
 	        person.setPhone("555-1234");
 	        person.setEmail("john.doe@example.com");
-
 	        PersonField[] fields = {};
-
 	        PersonDto personDto = objectDtoConverterService.buildPersonDto(person, fields);
-
 	        assertNull(personDto.getFirstName());
 	        assertNull(personDto.getLastName());
 	        assertNull(personDto.getAddress());
@@ -92,5 +81,4 @@ public class ObjectDtoConverterServiceTest {
 	        assertNull(personDto.getEmail());
 	    }
 	    
-
 }

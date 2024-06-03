@@ -31,15 +31,5 @@ public class UrlPersonnesCouvertesCaserneDTO {
 				+ ", adultsNumber=" + adultsNumber + ", childrenNumber="
 				+ childrenNumber + "]";
 	}
-	public UrlPersonnesCouvertesCaserneDTO(List<PersonDto> persons,
-			Integer adultsNumber, Integer childrenNumber) {
-		super();
-		this.persons = persons;
-		this.adultsNumber = adultsNumber;
-		this.childrenNumber = childrenNumber;
-	}
-	public UrlPersonnesCouvertesCaserneDTO() {
-		super();
-	}
 
 }

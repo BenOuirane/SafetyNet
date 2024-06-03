@@ -56,7 +56,7 @@ public class UrlPersonnesCouvertesCaserneController {
 		try {
 		log.info("UrlPersonnesCouvertesCaserneController GET Request start. Param Station number = " + numberOfStation);
 		ResponseEntity<UrlPersonnesCouvertesCaserneDTO> result = new ResponseEntity<>
-		( urlPersonnesCouvertesCaserneService.UrlPersonnesCouvertesCaserneService(numberOfStation),HttpStatus.OK);
+		( urlPersonnesCouvertesCaserneService.urlPersonnesCouvertesCaserneService(numberOfStation),HttpStatus.OK);
 
 		log.info("UrlPersonnesCouvertesCaserneController GET Request result : " + result);
 		    return result;

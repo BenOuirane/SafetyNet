@@ -3,7 +3,6 @@ package com.alerts.SafetyNet.urlServiceTest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
-
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -23,18 +22,15 @@ import com.alerts.SafetyNet.service.url.UrlPersonnesCouvertesCaserneService;
 
 @ExtendWith(MockitoExtension.class)
 public class UrlPersonnesCouvertesCaserneServiceTest {
+	
 	@Mock
     private FirestationRepository firestationRepository;
-
     @Mock
     private PersonRepository personRepository;
-
     @Mock
     private MedicalrecordRepository medicalRecordRepository;
-
     @Mock
     private ObjectDtoConverterService dtoService;
-
     @InjectMocks
     private UrlPersonnesCouvertesCaserneService urlPersonnesCouvertesCaserneService;
 
@@ -47,7 +43,6 @@ public class UrlPersonnesCouvertesCaserneServiceTest {
                 new Person("John", "Doe", "123 Main St", "", "", "", ""),
                 new Person("Jane", "Doe", "456 Elm St", "", "", "", "")
         );
-
         // Simulation des réponses des repositories et du service de conversion DTO
         when(firestationRepository.getFirestationAddresses(stationNumber)).thenReturn(addresses);
         when(personRepository.getPersonsByAddresses(addresses)).thenReturn(personsCovered);
@@ -57,15 +52,12 @@ public class UrlPersonnesCouvertesCaserneServiceTest {
         );
         when(medicalRecordRepository.ifAdult(any(Person.class))).thenReturn(true, false);
         when(medicalRecordRepository.ifChild(any(Person.class))).thenReturn(false, true);
-
         // Appel de la méthode à tester
-        UrlPersonnesCouvertesCaserneDTO result = urlPersonnesCouvertesCaserneService.UrlPersonnesCouvertesCaserneService(stationNumber);
-
+        UrlPersonnesCouvertesCaserneDTO result = urlPersonnesCouvertesCaserneService.urlPersonnesCouvertesCaserneService(stationNumber);
         // Assertions
         assertEquals(2, result.getPersons().size(), "Le nombre de personnes est incorrect");
         assertEquals(1, result.getAdultsNumber(), "Le nombre d'adultes est incorrect");
         assertEquals(1, result.getChildrenNumber(), "Le nombre d'enfants est incorrect");
     }
-    
 
 }

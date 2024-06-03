@@ -4,24 +4,19 @@ import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import com.alerts.SafetyNet.entity.Firestation;
 import com.alerts.SafetyNet.exception.NotFoundException;
 import com.alerts.SafetyNet.repository.impl.FirestationRepositoryImpl;
-
 
 public class FirestationRepositoryImplTest {
 
     private FirestationRepositoryImpl firestationRepository;
     
-
     @BeforeEach
     public void setup() {
         firestationRepository = new FirestationRepositoryImpl();
@@ -33,10 +28,8 @@ public class FirestationRepositoryImplTest {
         Firestation firestation1 = new Firestation("Address1", 1);
         Firestation firestation2 = new Firestation("Address2", 2);
         List<Firestation> firestationList = Arrays.asList(firestation1, firestation2);
-
         // Act
         firestationRepository.setListFirestations(firestationList);
-
         // Assert
         assertNotNull(firestationRepository.getFirestations());
         assertEquals(2, firestationRepository.getFirestations().size());
@@ -48,10 +41,8 @@ public class FirestationRepositoryImplTest {
     public void testAddFirestation() {
         // Arrange
         Firestation firestation = new Firestation("Address1", 1);
-
         // Act
         Firestation result = firestationRepository.addFirestation(firestation);
-
         // Assert
         List<Firestation> firestations = firestationRepository.getFirestations();
         assertEquals(1, firestations.size());
@@ -66,10 +57,8 @@ public class FirestationRepositoryImplTest {
         Firestation firestation2 = new Firestation("Address2", 2);
         List<Firestation> expectedList = Arrays.asList(firestation1, firestation2);
         firestationRepository.setListFirestations(expectedList);
-
         // Act
         List<Firestation> result = firestationRepository.getFirestations();
-
         // Assert
         assertNotNull(result);
         assertEquals(2, result.size());
@@ -83,12 +72,9 @@ public class FirestationRepositoryImplTest {
         Firestation firestation2 = new Firestation("Address2", 2);
         List<Firestation> firestationList = Arrays.asList(firestation1, firestation2);
         firestationRepository.setListFirestations(firestationList);
-        
         Firestation updatedFirestation = new Firestation("Address1", 3);
-
         // Act
         Firestation result = firestationRepository.updateFirestation(updatedFirestation);
-
         // Assert
         assertEquals(3, firestationRepository.getFirestations().get(0).getStation());
         assertEquals(updatedFirestation, result);
@@ -100,9 +86,7 @@ public class FirestationRepositoryImplTest {
         Firestation firestation1 = new Firestation("Address1", 1);
         List<Firestation> firestationList = Arrays.asList(firestation1);
         firestationRepository.setListFirestations(firestationList);
-        
         Firestation nonExistentFirestation = new Firestation("Address2", 2);
-
         // Act & Assert
         assertThrows(NotFoundException.class, () -> {
             firestationRepository.updateFirestation(nonExistentFirestation);
@@ -115,10 +99,8 @@ public class FirestationRepositoryImplTest {
         Firestation firestation2 = new Firestation("Address2", 2);
         List<Firestation> firestationList = new ArrayList<>(List.of(firestation1, firestation2));
         firestationRepository.setListFirestations(firestationList);
-
         // Act
         firestationRepository.deleteFirestation(firestation1);
-
         // Assert
         List<Firestation> result = firestationRepository.getFirestations();
         assertEquals(1, result.size());
@@ -133,9 +115,7 @@ public class FirestationRepositoryImplTest {
         Firestation firestation1 = new Firestation("Address1", 1);
         List<Firestation> firestationList = Arrays.asList(firestation1);
         firestationRepository.setListFirestations(firestationList);
-
         Firestation nonExistentFirestation = new Firestation("Address2", 2);
-
         // Act & Assert
         assertThrows(NotFoundException.class, () -> {
             firestationRepository.deleteFirestation(nonExistentFirestation);
@@ -151,10 +131,8 @@ public class FirestationRepositoryImplTest {
         Firestation firestation3 = new Firestation("Address2", 3);
         List<Firestation> firestationList = new ArrayList<>(List.of(firestation1, firestation2, firestation3));
         firestationRepository.setListFirestations(firestationList);
-
         // Act
         firestationRepository.deleteFirestationsByAddress("Address1");
-
         // Assert
         List<Firestation> result = firestationRepository.getFirestations();
         assertEquals(1, result.size());
@@ -170,7 +148,6 @@ public class FirestationRepositoryImplTest {
         Firestation firestation2 = new Firestation("Address2", 2);
         List<Firestation> firestationList = new ArrayList<>(List.of(firestation1, firestation2));
         firestationRepository.setListFirestations(firestationList);
-
         // Act & Assert
         assertThrows(NotFoundException.class, () -> {
             firestationRepository.deleteFirestationsByAddress("NonExistentAddress");
@@ -185,10 +162,8 @@ public class FirestationRepositoryImplTest {
         Firestation firestation3 = new Firestation("Address3", 2);
         List<Firestation> firestationList = new ArrayList<>(List.of(firestation1, firestation2, firestation3));
         firestationRepository.setListFirestations(firestationList);
-
         // Act
         firestationRepository.deleteFirestationsByStationNumber(1);
-
         // Assert
         List<Firestation> result = firestationRepository.getFirestations();
         assertEquals(1, result.size());
@@ -204,7 +179,6 @@ public class FirestationRepositoryImplTest {
         Firestation firestation2 = new Firestation("Address2", 2);
         List<Firestation> firestationList = new ArrayList<>(List.of(firestation1, firestation2));
         firestationRepository.setListFirestations(firestationList);
-
         // Act & Assert
         assertThrows(NotFoundException.class, () -> {
             firestationRepository.deleteFirestationsByStationNumber(3);
@@ -220,10 +194,8 @@ public class FirestationRepositoryImplTest {
         Firestation firestation3 = new Firestation("Address2", 3);
         List<Firestation> firestationList = new ArrayList<>(List.of(firestation1, firestation2, firestation3));
         firestationRepository.setListFirestations(firestationList);
-
         // Act
         List<Firestation> result = firestationRepository.getFirestationsByAddress("Address1");
-
         // Assert
         assertEquals(2, result.size());
         assertTrue(result.contains(firestation1));
@@ -237,7 +209,6 @@ public class FirestationRepositoryImplTest {
         Firestation firestation2 = new Firestation("Address2", 2);
         List<Firestation> firestationList = new ArrayList<>(List.of(firestation1, firestation2));
         firestationRepository.setListFirestations(firestationList);
-
         // Act & Assert
         assertThrows(NotFoundException.class, () -> {
             firestationRepository.getFirestationsByAddress("NonExistentAddress");
@@ -252,10 +223,8 @@ public class FirestationRepositoryImplTest {
         Firestation firestation3 = new Firestation("Address3", 2);
         List<Firestation> firestationList = new ArrayList<>(List.of(firestation1, firestation2, firestation3));
         firestationRepository.setListFirestations(firestationList);
-
         // Act
         List<Firestation> result = firestationRepository.getFirestationsByStationNumber(1);
-
         // Assert
         assertEquals(2, result.size());
         assertTrue(result.contains(firestation1));
@@ -269,7 +238,6 @@ public class FirestationRepositoryImplTest {
         Firestation firestation2 = new Firestation("Address2", 2);
         List<Firestation> firestationList = new ArrayList<>(List.of(firestation1, firestation2));
         firestationRepository.setListFirestations(firestationList);
-
         // Act & Assert
         assertThrows(NotFoundException.class, () -> {
             firestationRepository.getFirestationsByStationNumber(3);
@@ -290,14 +258,9 @@ public class FirestationRepositoryImplTest {
 
     @Test
     public void testGetFirestationAddresses_NotFound() {
-
         assertThrows(NotFoundException.class, () -> {
         	firestationRepository.getFirestationAddresses(1);
         });
     }
-    
-    
-    
-    
     
 }

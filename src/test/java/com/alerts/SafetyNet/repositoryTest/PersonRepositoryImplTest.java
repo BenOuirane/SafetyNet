@@ -4,19 +4,15 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-
 import com.alerts.SafetyNet.entity.Person;
 import com.alerts.SafetyNet.exception.NotFoundException;
 import com.alerts.SafetyNet.repository.impl.PersonRepositoryImpl;
@@ -25,7 +21,6 @@ public class PersonRepositoryImplTest {
 
     @Mock
     private PersonRepositoryImpl personRepository;
-
     @BeforeEach
     public void setup() {
         personRepository = new PersonRepositoryImpl();
@@ -45,8 +40,7 @@ public class PersonRepositoryImplTest {
         // Assert
         assertEquals(expectedPersons, actualPersons);
     }
-    
-    
+     
     @Test
     public void testAddPerson() {
         // Arrange
@@ -64,16 +58,13 @@ public class PersonRepositoryImplTest {
         // Arrange
         Person existingPerson = new Person("John", "Doe", "", "", "", "", "");
         personRepository.addPerson(existingPerson);
-
         Person updatedPerson = new Person("John", "Doe", "123 Main St", "City", "12345", "123-456-7890", "john.doe@example.com");
-
         // Act
         Person returnedPerson = personRepository.updatePerson(updatedPerson);
         List<Person> persons = personRepository.getPersons();
         Optional<Person> personFromList = persons.stream()
                                                  .filter(p -> p.getFirstName().equals("John") && p.getLastName().equals("Doe"))
                                                  .findFirst();
-
         // Assert
         assertEquals(updatedPerson, returnedPerson);
         assertTrue(personFromList.isPresent());
@@ -127,7 +118,6 @@ public class PersonRepositoryImplTest {
         assertThrows(NotFoundException.class, () -> personRepository.deletePersonByName(firstName, lastName));
     }
     
-
     @Test
     public void testGetPersonsByAddresses_Found() throws NotFoundException {
         // Create the PersonRepositoryImpl instance
@@ -143,9 +133,5 @@ public class PersonRepositoryImplTest {
         assertEquals(1, result.size());
         assertEquals("John", result.get(0).getFirstName());
     }
-
-    
-
-    
     
 }

@@ -13,10 +13,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 import java.util.Arrays;
 import java.util.List;
-
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -43,7 +41,6 @@ import com.alerts.SafetyNet.service.PersonService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-
 @SpringBootTest
 @RunWith(MockitoJUnitRunner.class)
 @AutoConfigureMockMvc
@@ -51,15 +48,11 @@ public class PersonControllerTest {
 
         @MockBean
 	    private PersonService  personService;
-
 	    @InjectMocks
 	    private PersonController personController;
-
 	    @Autowired
 		private MockMvc mockMvc;
-	    
-	  
-	    
+	   
 	    private static final ObjectMapper objectMapper = new ObjectMapper();
 
 	    public static String asJsonString(final Object obj) {
@@ -69,7 +62,6 @@ public class PersonControllerTest {
 	            throw new RuntimeException(e);
 	        }
 	    }
-	    
 	    
 	    @Before
 	    public  void setUp() throws Exception {
@@ -93,7 +85,6 @@ public class PersonControllerTest {
 	        person1.setZip("12345");
 	        person1.setPhone("555-1234");
 	        person1.setEmail("john.doe@example.com");
-
 	        Person person2 = new Person();
 	        person2.setFirstName("Jane");
 	        person2.setLastName("Doe");
@@ -102,11 +93,8 @@ public class PersonControllerTest {
 	        person2.setZip("12345");
 	        person2.setPhone("555-5678");
 	        person2.setEmail("jane.doe@example.com");
-
 	        List<Person> persons = Arrays.asList(person1, person2);
-
 	        when(personService.getPerson()).thenReturn(persons);
-
 	        // Act & Assert
 	        mockMvc.perform(get("/person/getPersons")
 	                .contentType(MediaType.APPLICATION_JSON))
@@ -128,7 +116,6 @@ public class PersonControllerTest {
 	                .andDo(print());  // Print the response for debugging
 	    }
 	    
-	 
 	    @Test
 	    public void  testcreatePerson_shouldGive200Ok() throws Exception {
 	      Person  personObject = new Person("BEN","Hajer","Anytown","Anytown-Tunisie","4145","1111111","Hajer.create@gmail.com");
@@ -144,23 +131,19 @@ public class PersonControllerTest {
 	       assertEquals(HttpStatus.OK.value(), response.getStatus());
 	          }
 	    
-	    
 	    @Test
 	    void testCreatePerson_ShouldReturn400BadRequest() throws Exception {
 	        // Create a person with invalid data (for example, empty firstName)
 	        Person personObject = new Person("", "Hajer", "Anytown", "Anytown-Tunisie", "4145", "11111111", "Hajer.create@gmail.com");
 	        String inputInJson = asJsonString(personObject);
 	        String uri = "/person/post";
-
 	        // Performing the POST request and verifying response
 	        mockMvc.perform(post(uri)
 	                .content(inputInJson)
 	                .contentType(MediaType.APPLICATION_JSON))
 	                .andExpect(status().isBadRequest());
 	    }
-	    
-	    
-	    
+	     
 	    @Test
 	    void testCreatePerson_ShouldReturn500InternalServerError() throws Exception {
 	    	// Arrange
@@ -172,9 +155,7 @@ public class PersonControllerTest {
 	        person.setZip("12345");
 	        person.setPhone("555-1234");
 	        person.setEmail("john.doe@example.com");
-
 	        when(personService.createPersons(any(Person.class))).thenThrow(new RuntimeException("Unexpected error"));
-
 	        // Act & Assert
 	        mockMvc.perform(post("/person/post")
 	                .contentType(MediaType.APPLICATION_JSON)
@@ -188,22 +169,17 @@ public class PersonControllerTest {
 	    public void  testupdatePerson_shouldGive200Ok() throws Exception {
 	    	// Prepare a Person object to be created first
 	        Person existingPerson = new Person("John", "Doe", "Anytown", "Anytown-Tunisie", "4145", "111111111", "john.doe@gmail.com");
-
 	        // Ensure the person is created first
 	        when(personService.createPersons(any(Person.class))).thenReturn(existingPerson);
-
 	        // Perform the POST request to create the person
 	        mockMvc.perform(post("/person/post")
 	                .contentType(MediaType.APPLICATION_JSON)
 	                .content(asJsonString(existingPerson)))
 	                .andExpect(status().isOk());
-
 	        // Prepare the updated Person object
 	        Person updatedPerson = new Person("John", "Doe", "Anytown", "Anytown-Tunisie", "4145", "11111111", "john.doe.updated@gmail.com");
-
 	        // Mock the behavior of personService.updatePerson to update the existing person
 	        when(personService.updatePerson(any(Person.class))).thenReturn(updatedPerson);
-
 	        // Perform the PUT request to update the existing person and expect 200 OK
 	        mockMvc.perform(put("/person/put")
 	                .contentType(MediaType.APPLICATION_JSON)
@@ -213,7 +189,6 @@ public class PersonControllerTest {
 	                .andExpect(jsonPath("$.lastName").value(updatedPerson.getLastName()))
 	                .andExpect(jsonPath("$.email").value(updatedPerson.getEmail()));
 	          }
-	    
 	    
 	    @Test
 	    public void testUpdatePerson_shouldGive404NotFound() throws Exception {
@@ -226,9 +201,7 @@ public class PersonControllerTest {
 	        person.setZip("12345");
 	        person.setPhone("555-1234");
 	        person.setEmail("john.doe@example.com");
-
 	        when(personService.updatePerson(any(Person.class))).thenThrow(new NotFoundException());
-
 	        // Act & Assert
 	        mockMvc.perform(put("/person/put")
 	                .contentType(MediaType.APPLICATION_JSON)
@@ -237,20 +210,17 @@ public class PersonControllerTest {
 	                .andDo(print()); // Print the response for debugging
 	    }
 	    
-	    
 	    @Test
 	    public void  testdeletePerson_shouldGive200Ok() throws Exception {
 	    	// Create a person
 	        Person person = new Person("John", "Doe","Anytown","Anytown-Tunisie","4145","1111111","benouirane@gmail.com");
 	        // Mocking service method to delete the person
 	        doNothing().when(personService).delete("John", "Doe");
-	        
 	        // Performing the DELETE request and verifying response
 	        mockMvc.perform(post("/person/post")
 	                .content(asJsonString(person))
 	                .contentType(MediaType.APPLICATION_JSON))
 	                .andExpect(status().isOk());
-
 	        // Performing the DELETE request and verifying response
 	        mockMvc.perform(delete("/person/delete")
 	                .param("firstName", "John")
@@ -264,7 +234,6 @@ public class PersonControllerTest {
 	    void testDeletePerson_ShouldReturn404NotFound() throws Exception {
 	        // Mocking service method to throw NotFoundException
 	        doThrow(new NotFoundException()).when(personService).delete("John", "Doe");
-	        
 	        // Performing the DELETE request and verifying response
 	        mockMvc.perform(MockMvcRequestBuilders.delete("/person/delete")
 	                .param("firstName", "John")
@@ -272,12 +241,6 @@ public class PersonControllerTest {
 	                .contentType(MediaType.APPLICATION_JSON))
 	                .andExpect(MockMvcResultMatchers.status().isNotFound())
 	                .andExpect(content().string("Person not found: Entity not found"));
-
 	    }
-	    
-	    
-
-	    
-	    
-	    
+	       
 }

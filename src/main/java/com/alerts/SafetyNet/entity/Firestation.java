@@ -6,15 +6,7 @@ package com.alerts.SafetyNet.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.experimental.FieldDefaults;
 
-
-@NoArgsConstructor
-@AllArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Firestation {
 
 	@JsonProperty("address")
@@ -36,6 +28,14 @@ public class Firestation {
 	}
 	public void setStation(Integer station) {
 		this.station = station;
+	}
+	public Firestation(String address, Integer station) {
+		super();
+		this.address = address;
+		this.station = station;
+	}
+	public Firestation() {
+		super();
 	}
 	
 	

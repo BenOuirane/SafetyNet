@@ -1,5 +1,7 @@
 package com.alerts.SafetyNet.repository.impl;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -7,6 +9,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.alerts.SafetyNet.entity.MedicalRecord;
+import com.alerts.SafetyNet.entity.Person;
 import com.alerts.SafetyNet.exception.NotFoundException;
 import com.alerts.SafetyNet.repository.MedicalrecordRepository;
 
@@ -50,7 +53,7 @@ public class MedicalrecordRepositoryImpl  implements MedicalrecordRepository{
 	public MedicalRecord getMedicalRecordByName(String firstName,
 			String lastName) throws NotFoundException {
        Optional<MedicalRecord> medicalRecord = listMedicalRecords.stream()
-    		   .filter(m -> m.getFirstName().equals(lastName))
+    		   .filter(m -> m.getFirstName().equals(firstName))
     		   .filter(m -> m.getLastName().equals(lastName))
     		   .findFirst();
        if(medicalRecord.isPresent()) {
@@ -74,6 +77,44 @@ public class MedicalrecordRepositoryImpl  implements MedicalrecordRepository{
 		MedicalRecord medicalRecordToUpdate = getMedicalRecordByName(firstName,lastName);
 		deleteMedicalRecord(medicalRecordToUpdate);
 	}
+
+	@Override
+	public int calculateAge(LocalDate birthdate) {
+		Period duration = Period.between(birthdate, LocalDate.now());
+		return duration.getYears();
+	}
+
+	@Override
+	public Integer havePersonAge(Person p) throws NotFoundException {
+		 Optional<MedicalRecord> personMR = listMedicalRecords.stream()
+				                 .filter(m -> m.getFirstName().equals(p.getFirstName()))
+				                 .filter(m -> m.getLastName().equals(p.getLastName())).findFirst();
+		 if(personMR.isPresent()) {
+			 return calculateAge(personMR.get().getBirthdate());
+		 }else {
+			 throw new NotFoundException();
+		 }
+	}
+
+	@Override
+	public boolean ifAdult(Person p) {
+		try {
+			return (this.havePersonAge(p)>18);
+		}catch(NotFoundException e){
+		return false;
+		}
+	}
+
+	@Override
+	public boolean ifChild(Person p) {
+		try {
+			return (this.havePersonAge(p) <= 18);
+		}catch(NotFoundException e){
+		return false;
+		}
+	}
+	
+
 	
 	
 

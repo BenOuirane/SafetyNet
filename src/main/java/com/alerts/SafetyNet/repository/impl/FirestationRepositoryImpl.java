@@ -93,6 +93,14 @@ public class FirestationRepositoryImpl implements FirestationRepository {
 	       }
 	}
 
+	@Override
+	public List<String> getFirestationAddresses(Integer StationNumber)
+			throws NotFoundException {
+		List<Firestation> firestations = this.getFirestationsByStationNumber(StationNumber);
+		List<String> adresses = firestations.stream().map(f -> f.getAddress()).toList();
+		return adresses;
+	}
+
 
 	 
 	

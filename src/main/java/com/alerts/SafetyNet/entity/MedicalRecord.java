@@ -9,18 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-import lombok.experimental.FieldDefaults;
 
 
-
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
-@FieldDefaults(level = AccessLevel.PRIVATE)
 public class MedicalRecord {
 
 	@JsonProperty("firstName")
@@ -68,6 +58,18 @@ public class MedicalRecord {
 	}
 	public void setAllergies(List<String> allergies) {
 		this.allergies = allergies;
+	}
+	public MedicalRecord(String firstName, String lastName, LocalDate birthdate,
+			List<String> medications, List<String> allergies) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.birthdate = birthdate;
+		this.medications = medications;
+		this.allergies = allergies;
+	}
+	public MedicalRecord() {
+		super();
 	}
 	
 	

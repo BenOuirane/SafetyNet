@@ -52,9 +52,14 @@ public class MedicalrecordController {
     @PostMapping("/post")
     public ResponseEntity<?> createMedicalrecords(@RequestBody  MedicalRecord m){
 	    	log.info("MedicalRecord Controller POST Request start. Param MedicalRecord = " + m);
+	    	try {
 	    	MedicalRecord creaedMedicalRecord = 	medicalrecordService.createMedicalRecord(m);
     		log.info("MedicalRecord Controller POST Request result : " + creaedMedicalRecord);
             return new ResponseEntity<>(creaedMedicalRecord, HttpStatus.OK);
+	    	} catch (Exception e) {
+	            log.error("Error occurred while creating MedicalRecord: " + e.getMessage(), e);
+	            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+	        }
     }
     
     /**
@@ -68,9 +73,17 @@ public class MedicalrecordController {
    	@PutMapping("/put")
    	public ResponseEntity<MedicalRecord> updateMedicalrecord(@RequestBody MedicalRecord medicalRecord) throws NotFoundException {
    		log.info("MedicalRecord Controller PUT Request start. Param Firestation = " + medicalRecord);
+   	 try {
    		ResponseEntity<MedicalRecord> updatedMedicalRecord = new ResponseEntity<>(medicalrecordService.updateMedicalRecord(medicalRecord), HttpStatus.OK);
    		log.info("MedicalRecord Controller PUT Request result : " + updatedMedicalRecord);
    		return updatedMedicalRecord;
+   	} catch (NotFoundException e) {
+        log.error("MedicalRecord not found: " + e.getMessage(), e);
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    } catch (Exception e) {
+        log.error("Error occurred while updating MedicalRecord: " + e.getMessage(), e);
+        return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
    	}
    	
    	/**
@@ -86,11 +99,20 @@ public class MedicalrecordController {
 	public ResponseEntity<String> deletePerson(@RequestParam String firstName, @RequestParam String lastName)
 			throws NotFoundException {
 		log.info("MedicalRecord Controller DELETE Request start. Param firstName = " + firstName + " / lastName = " + lastName);
+		try {
+
 		medicalrecordService.deleteByName(firstName, lastName);
 		ResponseEntity<String> deletedMedicalRecord  = ResponseEntity.status(HttpStatus.OK)
 				.body("The MedicalRecord has been succesfully deleted");
 		log.info("MedicalRecord Controller DELETE Request result : " + deletedMedicalRecord);
 		return deletedMedicalRecord;
+		} catch (NotFoundException e) {
+	        log.error("MedicalRecord not found: " + e.getMessage(), e);
+	        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("MedicalRecord not found");
+	    } catch (Exception e) {
+	        log.error("Error occurred while deleting MedicalRecord: " + e.getMessage(), e);
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred while deleting the MedicalRecord");
+	    }
 	}
 	
 	

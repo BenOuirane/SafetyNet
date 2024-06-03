@@ -4,6 +4,8 @@ package com.alerts.SafetyNet.repository.impl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Service;
 import com.alerts.SafetyNet.entity.Person;
 import com.alerts.SafetyNet.exception.NotFoundException;
@@ -55,25 +57,30 @@ public class PersonRepositoryImpl implements PersonRepository{
 
 	@Override
 	public void deletePersonByName(String firstName, String lastName) throws NotFoundException {
-		
 		Optional<Person> personToDelete = listPersons.stream().filter(p -> p.getFirstName().equals(firstName))
 				.filter(p -> p.getLastName().equals(lastName)).findFirst();
-
 		if (personToDelete.isPresent()) {
 			deletePerson(personToDelete.get());
 		} else {
 			throw new NotFoundException();
 		}
-              
-		
 	}
 
-
+	@Override
+	public List<Person> getPersonsByAddresses(List<String> addresses) throws NotFoundException {
+		return listPersons.stream().filter(p -> addresses.stream().anyMatch(a -> a.equals(p.getAddress())))
+				.collect(Collectors.toList());
+	}
+	
+	/*
 	@Override
 	public List<Person> getPersonsByName(String firstName, String lastName) throws NotFoundException {
 		// TODO Auto-generated method stub
 		return null;
 	}
+   */
+
+	
 	
 
 }

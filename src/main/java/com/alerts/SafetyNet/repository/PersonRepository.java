@@ -35,7 +35,9 @@ public interface PersonRepository{
      
      void    deletePersonByName(String firstName, String lastName) throws NotFoundException; 
      
-     List<Person> getPersonsByName(String firstName, String lastName)  throws NotFoundException;
+   //  List<Person> getPersonsByName(String firstName, String lastName)  throws NotFoundException;
+     
+     public List<Person> getPersonsByAddresses(List<String> addresses) throws NotFoundException;
     	    
      
 	

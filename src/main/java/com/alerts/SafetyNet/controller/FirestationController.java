@@ -63,10 +63,16 @@ public class FirestationController {
 
     @PostMapping("/post")
     public ResponseEntity<?> createFirestation(@RequestBody  Firestation f){
+        try {
+
 	    	log.info("Firestation Controller POST Request start. Param firestation = " + f);
 	    	Firestation creaedFirestation = firestationService.createFirestations(f);
     		log.info("Firestation Controller POST Request result : " + creaedFirestation);
             return new ResponseEntity<>(creaedFirestation, HttpStatus.OK);
+        } catch (Exception e) {
+            log.error("Internal server error", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal Server Error");
+        }
     }
     
     /**
@@ -79,10 +85,18 @@ public class FirestationController {
        
    	@PutMapping("/put")
    	public ResponseEntity<Firestation> updatePerson(@RequestBody Firestation firestation) throws NotFoundException {
+   	 try {
    		log.info("Firestation Controller PUT Request start. Param Firestation = " + firestation);
    		ResponseEntity<Firestation> updatedFirestation = new ResponseEntity<>(firestationService.updateFirestation(firestation), HttpStatus.OK);
    		log.info("Firestation Controller PUT Request result : " + updatedFirestation);
    		return updatedFirestation;
+   	} catch (NotFoundException e) {
+        log.error("Firestation not found: " + e.getMessage());
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    } catch (Exception e) {
+        log.error("Error updating firestation: " + e.getMessage());
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
    	}
    	
    	/**

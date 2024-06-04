@@ -108,4 +108,23 @@ public class MedicalrecordRepositoryImpl  implements MedicalrecordRepository{
 		}
 	}
 
+	@Override
+	public List<String> getMedicationsByLastName(String lastName) throws NotFoundException{
+		return listMedicalRecords.stream()
+	            .filter(m -> m.getLastName().equals(lastName))
+	            .findFirst()
+	            .map(MedicalRecord::getMedications)
+	            .orElseThrow(() -> new NotFoundException());
+	}
+
+	@Override
+	public List<String> getAllergiesByLastName(String lastName)
+			throws NotFoundException {
+		return listMedicalRecords.stream()
+	            .filter(m -> m.getLastName().equals(lastName))
+	            .findFirst()
+	            .map(MedicalRecord::getAllergies)
+	            .orElseThrow(() -> new NotFoundException());
+	}
+
 }

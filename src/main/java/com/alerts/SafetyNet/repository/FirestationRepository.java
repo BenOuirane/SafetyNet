@@ -26,5 +26,7 @@ public interface FirestationRepository{
      List<Firestation> getFirestationsByAddress(String address) throws NotFoundException;    
      List<Firestation> getFirestationsByStationNumber(Integer stationNumber) throws NotFoundException;   
      List<String> getFirestationAddresses(Integer StationNumber) throws NotFoundException;
+     int getStationByAddress(String address) throws NotFoundException;    
+
 
 }

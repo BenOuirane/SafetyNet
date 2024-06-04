@@ -31,5 +31,8 @@ public interface MedicalrecordRepository {
      public Integer havePersonAge(Person p) throws NotFoundException;
      public boolean ifAdult(Person p);
      public boolean ifChild(Person p);
+     List<String> getMedicationsByLastName(String lastName) throws NotFoundException;
+     List<String> getAllergiesByLastName(String lastName) throws NotFoundException;
+
 	 
 }

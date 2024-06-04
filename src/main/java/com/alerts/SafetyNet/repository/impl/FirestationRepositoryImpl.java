@@ -98,4 +98,13 @@ public class FirestationRepositoryImpl implements FirestationRepository {
 		return adresses;
 	}
 
+	@Override
+	public int getStationByAddress(String address) throws NotFoundException {
+		return listFirestations.stream()
+		        .filter(f -> f.getAddress().equals(address))
+		        .findFirst()
+		        .map(Firestation::getStation)
+		        .orElseThrow(() -> new NotFoundException());
+	}
+
 }

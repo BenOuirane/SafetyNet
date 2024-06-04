@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,6 +20,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 @ExtendWith(MockitoExtension.class)
 public class MedicalrecordRepositoryImplTest {
@@ -279,5 +281,35 @@ public class MedicalrecordRepositoryImplTest {
         Person unknown = new Person("Nonexistent", "Person"," "," "," "," "," ");
         assertFalse(medicalrecordRepository.ifChild(unknown));
     } 
+    
+    @Test
+    public void testGetMedicationsByLastName_Success() throws NotFoundException {
+        MedicalRecord record = new MedicalRecord("John", "Doe", LocalDate.of(1990, 1, 1), List.of("med1", "med2"), List.of("Allergy1", "Allergy2"));
+        when(listMedicalRecords.stream())
+                .thenReturn(Arrays.asList(record).stream());
+        List<String> medications = medicalrecordRepository.getMedicationsByLastName("Doe");
+        assertEquals(Arrays.asList("med1", "med2"), medications);
+    }
+
+    @Test
+    public void testGetMedicationsByLastName_NotFound() {
+        when(listMedicalRecords.stream()).thenReturn(Stream.empty());
+        assertThrows(NotFoundException.class, () -> medicalrecordRepository.getMedicationsByLastName("Doe"));
+    }
+    
+    @Test
+    public void testGetAllergiesByLastName_Success() throws NotFoundException {
+        MedicalRecord record = new MedicalRecord("John", "Doe", LocalDate.of(1990, 1, 1), List.of("med1", "med2"), List.of("allergy1", "allergy2"));
+        when(listMedicalRecords.stream()).thenReturn(Stream.of(record));
+        List<String> allergies = medicalrecordRepository.getAllergiesByLastName("Doe");
+        assertEquals(Arrays.asList("allergy1", "allergy2"), allergies);
+    }
+
+    @Test
+    public void testGetAllergiesByLastName_NotFound() {
+        when(listMedicalRecords.stream()).thenReturn(Stream.empty());
+        assertThrows(NotFoundException.class, () -> medicalrecordRepository.getAllergiesByLastName("Doe"));
+    }
+    
       
 }

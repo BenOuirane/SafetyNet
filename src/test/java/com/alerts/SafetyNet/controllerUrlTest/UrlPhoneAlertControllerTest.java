@@ -32,31 +32,25 @@ public class UrlPhoneAlertControllerTest {
     }
 
     @Test
-    public void testGetPhoneByFirestation_Success() throws NotFoundException {
+    public void testGetPhoneByFirestation_Success200() throws NotFoundException {
         when(urlPhoneAlertService.getPhoneByFirestation(1)).thenReturn(phoneAlertDtoList);
-
-        ResponseEntity<List<PhoneAlertDto>> response = urlPhoneAlertController.getPhoneByFirestation(1);
-
+        ResponseEntity<List<PhoneAlertDto>> response = urlPhoneAlertController.getPhoneAlertController(1);
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(phoneAlertDtoList, response.getBody());
     }
 
     @Test
-    public void testGetPhoneByFirestation_NotFound() throws NotFoundException {
+    public void testGetPhoneByFirestation_NotFound404() throws NotFoundException {
         when(urlPhoneAlertService.getPhoneByFirestation(1)).thenThrow(new NotFoundException());
-
-        ResponseEntity<List<PhoneAlertDto>> response = urlPhoneAlertController.getPhoneByFirestation(1);
-
+        ResponseEntity<List<PhoneAlertDto>> response = urlPhoneAlertController.getPhoneAlertController(1);
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
         assertEquals(Collections.emptyList(), response.getBody());
     }
 
     @Test
-    public void testGetPhoneByFirestation_InternalServerError() throws NotFoundException {
+    public void testGetPhoneByFirestation_InternalServerError500() throws NotFoundException {
         when(urlPhoneAlertService.getPhoneByFirestation(1)).thenThrow(new RuntimeException("Internal error"));
-
-        ResponseEntity<List<PhoneAlertDto>> response = urlPhoneAlertController.getPhoneByFirestation(1);
-
+        ResponseEntity<List<PhoneAlertDto>> response = urlPhoneAlertController.getPhoneAlertController(1);
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
         assertEquals(Collections.emptyList(), response.getBody());
     }

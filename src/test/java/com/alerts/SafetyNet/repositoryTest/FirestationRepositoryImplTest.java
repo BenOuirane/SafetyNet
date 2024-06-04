@@ -268,5 +268,27 @@ public class FirestationRepositoryImplTest {
         	firestationRepository.getFirestationAddresses(1);
         });
     }
+    
+    @Test
+    public void testGetStationByAddress_Success() throws NotFoundException {
+		List<Firestation> firestations = Arrays.asList(
+            new Firestation("123 Main St", 1),
+            new Firestation("456 Elm St", 2)
+        );
+        firestationRepository.setListFirestations(firestations);
+        int stationNumber = firestationRepository.getStationByAddress("123 Main St");
+        assertEquals(1, stationNumber);
+    }
+
+    @Test
+    public void testGetStationByAddress_NotFound() {
+        List<Firestation> firestations = Arrays.asList(
+            new Firestation("123 Main St", 1),
+            new Firestation("456 Elm St", 2)
+        );
+        firestationRepository.setListFirestations(firestations);
+        assertThrows(NotFoundException.class, () -> firestationRepository.getStationByAddress("789 Oak St"));
+    }
+    
    
 }

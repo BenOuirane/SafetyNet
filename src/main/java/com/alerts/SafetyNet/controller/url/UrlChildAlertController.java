@@ -47,7 +47,7 @@ public class UrlChildAlertController {
  	 */
     
     @GetMapping("/childAlert")
-    public ResponseEntity<List<ChildAlertDto>> PersonnesCouvertesCaserne(@RequestParam String address)
+    public ResponseEntity<List<ChildAlertDto>> getChildAlertController(@RequestParam String address)
             throws NotFoundException {
         try {
             log.info("UrlChildAlertController GET Request start. Param Address = " + address);

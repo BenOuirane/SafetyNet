@@ -53,7 +53,7 @@ public class ChildAlertDto {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.age = age;
-		FamilyMembers = familyMembers;
+		this.FamilyMembers = familyMembers;
 	}
 	
 }

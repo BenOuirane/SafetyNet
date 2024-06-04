@@ -20,7 +20,7 @@ public class UrlChildAlertService {
 	MedicalrecordRepository medicalRecordRepository;
 	@Autowired
 	ObjectDtoConverterService dtoService;
-	
+
 	public List<ChildAlertDto> getChildrenIntoAddress(String address) throws NotFoundException {
 		List<Person> PeopleIntoAddress   = personRepository .getPersonsByAddresse(address);
 		List<Person> ChildrenIntoAddress = PeopleIntoAddress.stream().filter(p -> medicalRecordRepository

@@ -47,7 +47,7 @@ public class UrlPersonnesCouvertesCaserneControllerTest {
 	    @Test
 	    public void testPersonnesCouvertesCaserne_NotFound() throws Exception {
 	        when(urlPersonnesCouvertesCaserneService.urlPersonnesCouvertesCaserneService(anyInt())).thenThrow(new NotFoundException());
-	        mockMvc.perform(get("/covergePerson/get")
+	        mockMvc.perform(get("/firestation")
 	                .param("numberOfStation", "1")
 	                .contentType(MediaType.APPLICATION_JSON))
 	                .andExpect(status().isNotFound());

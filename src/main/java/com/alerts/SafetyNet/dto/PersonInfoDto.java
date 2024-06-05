@@ -2,26 +2,25 @@ package com.alerts.SafetyNet.dto;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-public class HabitantDto {
+public class PersonInfoDto {
 	
-    @JsonProperty("lastName")
 	String lastName;
-    @JsonProperty("phone")
-	String phone;
-    @JsonProperty("age")
-	int    age;
-    @JsonProperty("medications")
-	List<String> medications;
-    @JsonProperty("allergies")
-	List<String> allergies;
-    
+    String address;
+    int age;
+    String email;
+    List<String> medications;
+    List<String> allergies;
 	public String getLastName() {
 		return lastName;
 	}
+	public String getAddress() {
+		return address;
+	}
 	public int getAge() {
 		return age;
+	}
+	public String getEmail() {
+		return email;
 	}
 	public List<String> getMedications() {
 		return medications;
@@ -29,15 +28,16 @@ public class HabitantDto {
 	public List<String> getAllergies() {
 		return allergies;
 	}
-	public HabitantDto(String lastName, String phone, int age,
+	public PersonInfoDto(String lastName, String address, int age, String email,
 			List<String> medications, List<String> allergies) {
 		super();
 		this.lastName = lastName;
-		this.phone = phone;
+		this.address = address;
 		this.age = age;
+		this.email = email;
 		this.medications = medications;
 		this.allergies = allergies;
 	}
-	
+    
 
 }

@@ -11,15 +11,9 @@ public class PhoneAlertDto {
 	public List<String> getPhone() {
 		return phone;
 	}
-
-	public void setPhone(List<String> phone) {
-		this.phone = phone;
-	}
-
 	public PhoneAlertDto(List<String> phone) {
 		super();
 		this.phone = phone;
 	}
-
 
 }

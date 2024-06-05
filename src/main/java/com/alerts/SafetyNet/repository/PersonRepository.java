@@ -30,6 +30,7 @@ public interface PersonRepository{
      public List<Person> getPersonsByAddresses(List<String> addresses) throws NotFoundException;
      public List<Person> getPersonsByLastName(List<String> lastname) throws NotFoundException;
      public List<Person> getPersonsByAddresse(String addresse) throws NotFoundException;
+     public List<Person> getPersonsInfoByLastName(String lastname) throws NotFoundException;
 
 
     	    

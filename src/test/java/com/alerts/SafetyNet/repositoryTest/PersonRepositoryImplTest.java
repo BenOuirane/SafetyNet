@@ -26,6 +26,8 @@ public class PersonRepositoryImplTest {
 
     @Mock
     private PersonRepositoryImpl personRepository;
+    @Mock
+    private List<Person> listPersons;
     @BeforeEach
     public void setup() {
         personRepository = new PersonRepositoryImpl();
@@ -192,6 +194,31 @@ public class PersonRepositoryImplTest {
                 throw new NotFoundException();
             }
         });
+    }
+    
+    @Test
+    void testGetPersonsInfoByLastName_Success() throws NotFoundException {
+        // Arrange
+        String lastName = "Doe";
+        Person person1 = new Person("John", "Doe", "123 Main St", "Springfield", "12345", "123-456-7890", "john.doe@example.com");
+        Person person2 = new Person("Jane", "Doe", "123 Main St", "Springfield", "12345", "123-456-7890", "john.doe@example.com");
+        personRepository.addPerson(person1);
+        personRepository.addPerson(person2);
+        List<Person> expectedResult = Arrays.asList(person1, person2);
+        // Act
+        List<Person> result = personRepository.getPersonsInfoByLastName(lastName);
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+    
+    @Test
+    void testGetPersonsInfoByLastName_NotFound() throws NotFoundException {
+    	// Arrange
+        String lastName = "Smith";
+        // Act
+        List<Person> result = personRepository.getPersonsInfoByLastName(lastName);
+        // Assert
+        assertTrue(result.isEmpty());
     }
     
 }

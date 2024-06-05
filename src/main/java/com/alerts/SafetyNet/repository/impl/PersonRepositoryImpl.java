@@ -78,8 +78,13 @@ public class PersonRepositoryImpl implements PersonRepository{
 		return listPersons.stream().filter(p -> p.getAddress().equals(addresse))
 				.collect(Collectors.toList());
 	}
-	
-	
+
+	@Override
+	public List<Person> getPersonsInfoByLastName(String lastname)
+			throws NotFoundException {
+		return listPersons.stream().filter(p ->p.getLastName().equals(lastname))
+				.collect(Collectors.toList());
+	}
 	
 
 }

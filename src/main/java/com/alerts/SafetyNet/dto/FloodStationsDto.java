@@ -14,14 +14,8 @@ public class FloodStationsDto {
 	public String getAddress() {
 		return address;
 	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
 	public List<HabitantDto> getHabitants() {
 		return Habitants;
-	}
-	public void setHabitants(List<HabitantDto> habitants) {
-		Habitants = habitants;
 	}
 	public FloodStationsDto(String address, List<HabitantDto> habitants) {
 		super();

@@ -221,4 +221,40 @@ public class PersonRepositoryImplTest {
         assertTrue(result.isEmpty());
     }
     
+    @Test
+    public void testGetEmailsByCity_Success() throws NotFoundException {
+        // Arrange
+        String city = "New York";
+        Person person1 = new Person("Alice","Doe", "123 Main St", "New York", "", "", "alice@example.com" );
+        Person person2 = new Person("Bob","Doe", "123 Main St", "London", "", "", "bob@example.com");
+        Person person3 = new Person("Charlie", "Doe", "123 Main St", "New York", "", "", "charlie@example.com");
+        Person person4 = new Person("David","Doe", "123 Main St", "Paris", "", "", "david@example.com");
+        personRepository.addPerson(person1);
+        personRepository.addPerson(person2);
+        personRepository.addPerson(person3);
+        personRepository.addPerson(person4);
+        List<String> expectedEmails = Arrays.asList("alice@example.com", "charlie@example.com");
+        // Act
+        List<String> result = personRepository.getEmailsByCity(city);
+        // Assert
+        assertEquals(expectedEmails.size(), result.size());
+        assertEquals(expectedEmails, result);
+    }
+
+    @Test
+    public void testGetEmailsByCity_NotFound() {
+        // Arrange
+        Person person = new Person("John", "Doe", "123 Main St", "Springfield", "12345", "123-456-7890", "john.doe@example.com");
+        personRepository.addPerson(person);
+        String nonExistingCity = "NonExistingCity";
+        // Act & Assert
+        assertThrows(NotFoundException.class, () -> {
+            List<String> result = personRepository.getEmailsByCity(nonExistingCity);
+            if (result.isEmpty()) {
+                throw new NotFoundException();
+            }
+        });
+    }
+
+
 }

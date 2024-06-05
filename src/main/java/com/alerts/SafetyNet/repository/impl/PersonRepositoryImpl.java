@@ -85,6 +85,14 @@ public class PersonRepositoryImpl implements PersonRepository{
 		return listPersons.stream().filter(p ->p.getLastName().equals(lastname))
 				.collect(Collectors.toList());
 	}
+
+	@Override
+	public List<String> getEmailsByCity(String city) throws NotFoundException {
+		 return listPersons.stream()
+		            .filter(p -> p.getCity().equals(city))
+		            .map(Person::getEmail) // Map each person to their email address
+		            .collect(Collectors.toList());
+	}
 	
 
 }

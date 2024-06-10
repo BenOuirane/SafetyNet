@@ -25,7 +25,7 @@ public class UrlFloodStationsService {
 	
 	public List<FloodStationsDto> getFloodStationsService (List<Integer> stations) throws NotFoundException {
 		
-        List<FloodStationsDto> habitants = new ArrayList<>();
+        List<FloodStationsDto> FloodStation = new ArrayList<>();
         List<Firestation> Firestations = new ArrayList<>();
         List<String> addressesOfStations = new ArrayList<>();
         for (Integer station : stations) {
@@ -52,9 +52,9 @@ public class UrlFloodStationsService {
             }
             FloodStationsDto FinalPersons = new FloodStationsDto(address,HabitantByAddress);
 
-            habitants.add(FinalPersons);
+            FloodStation.add(FinalPersons);
         }
-             return habitants;
+             return FloodStation;
 		}
 		        		
 }

@@ -8,19 +8,19 @@ public class FloodStationsDto {
 	
     @JsonProperty("address")
 	String address;
-    @JsonProperty("Habitants")
-	List<HabitantDto> Habitants;
+    @JsonProperty("habitants")
+	List<HabitantDto> habitants;
     
 	public String getAddress() {
 		return address;
 	}
 	public List<HabitantDto> getHabitants() {
-		return Habitants;
+		return habitants;
 	}
 	public FloodStationsDto(String address, List<HabitantDto> habitants) {
 		super();
 		this.address = address;
-		Habitants = habitants;
+		this.habitants = habitants;
 	}
 	
 }

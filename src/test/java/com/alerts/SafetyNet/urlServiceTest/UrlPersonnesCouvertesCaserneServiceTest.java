@@ -10,14 +10,12 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import com.alerts.SafetyNet.dto.PersonDto;
 import com.alerts.SafetyNet.dto.UrlPersonnesCouvertesCaserneDTO;
 import com.alerts.SafetyNet.entity.Person;
 import com.alerts.SafetyNet.exception.NotFoundException;
 import com.alerts.SafetyNet.repository.FirestationRepository;
 import com.alerts.SafetyNet.repository.MedicalrecordRepository;
 import com.alerts.SafetyNet.repository.PersonRepository;
-import com.alerts.SafetyNet.service.url.ObjectDtoConverterService;
 import com.alerts.SafetyNet.service.url.UrlPersonnesCouvertesCaserneService;
 
 @ExtendWith(MockitoExtension.class)
@@ -29,8 +27,6 @@ public class UrlPersonnesCouvertesCaserneServiceTest {
     private PersonRepository personRepository;
     @Mock
     private MedicalrecordRepository medicalRecordRepository;
-    @Mock
-    private ObjectDtoConverterService dtoService;
     @InjectMocks
     private UrlPersonnesCouvertesCaserneService urlPersonnesCouvertesCaserneService;
 
@@ -46,10 +42,6 @@ public class UrlPersonnesCouvertesCaserneServiceTest {
         // Simulation des réponses des repositories et du service de conversion DTO
         when(firestationRepository.getFirestationAddresses(stationNumber)).thenReturn(addresses);
         when(personRepository.getPersonsByAddresses(addresses)).thenReturn(personsCovered);
-        when(dtoService.buildPersonDto(any(Person.class), any())).thenReturn(
-                new PersonDto("John", "Doe", "", "", "", "", ""),
-                new PersonDto("Jane", "Doe", "", "", "", "", "")
-        );
         when(medicalRecordRepository.ifAdult(any(Person.class))).thenReturn(true, false);
         when(medicalRecordRepository.ifChild(any(Person.class))).thenReturn(false, true);
         // Appel de la méthode à tester

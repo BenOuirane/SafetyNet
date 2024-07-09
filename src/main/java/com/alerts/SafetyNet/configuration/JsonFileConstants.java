@@ -6,6 +6,7 @@ package com.alerts.SafetyNet.configuration;
  * @author BEN OUIRANE Hjaeur
  *
  */
+
 public class JsonFileConstants {
 	
 	public static final String persons = "persons";
@@ -29,3 +30,4 @@ public class JsonFileConstants {
 	public static final String medicalrecord_allergies = "allergies";
 	
 }
+

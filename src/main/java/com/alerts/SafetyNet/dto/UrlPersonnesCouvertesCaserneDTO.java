@@ -4,13 +4,13 @@ import java.util.List;
 
 public class UrlPersonnesCouvertesCaserneDTO {
 	
-	List<PersonDto> persons;
+	List<PersonByStationDto> persons;
 	Integer adultsNumber;
 	Integer childrenNumber;
-	public List<PersonDto> getPersons() {
+	public List<PersonByStationDto> getPersons() {
 		return persons;
 	}
-	public void setPersons(List<PersonDto> persons) {
+	public void setPersons(List<PersonByStationDto> persons) {
 		this.persons = persons;
 	}
 	public Integer getAdultsNumber() {

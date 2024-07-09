@@ -13,7 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import com.alerts.SafetyNet.dto.PersonDto;
+import com.alerts.SafetyNet.dto.PersonByStationDto;
 import com.alerts.SafetyNet.dto.UrlPersonnesCouvertesCaserneDTO;
 import com.alerts.SafetyNet.exception.NotFoundException;
 import com.alerts.SafetyNet.service.url.UrlPersonnesCouvertesCaserneService;
@@ -32,7 +32,7 @@ public class UrlPersonnesCouvertesCaserneControllerTest {
 	        UrlPersonnesCouvertesCaserneDTO dto = new UrlPersonnesCouvertesCaserneDTO();
 	        dto.setAdultsNumber(1);
 	        dto.setChildrenNumber(1);
-	        dto.setPersons(List.of(new PersonDto("John", "Doe", "", "", "", "", ""), new PersonDto("Jane", "Doe", "", "", "", "", "")));
+	        dto.setPersons(List.of(new PersonByStationDto("John", "Doe", "", ""), new PersonByStationDto("Jane", "Doe", "", "")));
 	        when(urlPersonnesCouvertesCaserneService.urlPersonnesCouvertesCaserneService(anyInt())).thenReturn(dto);
 	        mockMvc.perform(get("/firestation")
 	                .param("numberOfStation", "1")
@@ -52,4 +52,5 @@ public class UrlPersonnesCouvertesCaserneControllerTest {
 	                .contentType(MediaType.APPLICATION_JSON))
 	                .andExpect(status().isNotFound());
 	    }
+	    
 }

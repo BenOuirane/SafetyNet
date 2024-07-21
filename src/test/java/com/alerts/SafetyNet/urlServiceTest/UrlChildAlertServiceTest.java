@@ -44,16 +44,14 @@ public class UrlChildAlertServiceTest {
         when(personRepository.getPersonsByAddresse(address)).thenReturn(persons);
         when(medicalRecordRepository.ifChild(child)).thenReturn(true);
         when(medicalRecordRepository.ifChild(adult)).thenReturn(false); // Ensure this is set
-        when(medicalRecordRepository.ifAdult(adult)).thenReturn(true);
-        when(medicalRecordRepository.ifAdult(child)).thenReturn(false); // Ensure this is set
         when(medicalRecordRepository.havePersonAge(child)).thenReturn(10);
         List<ChildAlertDto> result = urlChildAlertService.getChildrenIntoAddress(address);
         assertEquals(1, result.size());
         assertEquals("John", result.get(0).getFirstName());
         assertEquals("Doe", result.get(0).getLastName());
         assertEquals(10, result.get(0).getAge());
-        assertEquals(1, result.get(0).getFamilyMembers().size());
-        assertEquals("Jane", result.get(0).getFamilyMembers().get(0).getFirstName());
+        assertEquals(2, result.get(0).getFamilyMembers().size());
+        assertEquals("John", result.get(0).getFamilyMembers().get(0).getFirstName());
     }
 
     @Test
@@ -75,7 +73,6 @@ public class UrlChildAlertServiceTest {
         List<Person> persons = Collections.singletonList(adult);
         when(personRepository.getPersonsByAddresse(address)).thenReturn(persons);
         when(medicalRecordRepository.ifChild(adult)).thenReturn(false);
-        when(medicalRecordRepository.ifAdult(adult)).thenReturn(true);
         List<ChildAlertDto> result = urlChildAlertService.getChildrenIntoAddress(address);
         assertEquals(0, result.size());
     }

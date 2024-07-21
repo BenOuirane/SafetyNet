@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.alerts.SafetyNet.dto.PhoneAlertDto;
-import com.alerts.SafetyNet.entity.Firestation;
-import com.alerts.SafetyNet.entity.Person;
 import com.alerts.SafetyNet.exception.NotFoundException;
+import com.alerts.SafetyNet.model.Firestation;
+import com.alerts.SafetyNet.model.Person;
 import com.alerts.SafetyNet.repository.FirestationRepository;
 import com.alerts.SafetyNet.repository.PersonRepository;
 

@@ -13,8 +13,9 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import com.alerts.SafetyNet.entity.Firestation;
+
 import com.alerts.SafetyNet.exception.NotFoundException;
+import com.alerts.SafetyNet.model.Firestation;
 import com.alerts.SafetyNet.repository.impl.FirestationRepositoryImpl;
 import com.alerts.SafetyNet.service.impl.FirestationServiceImpl;
 

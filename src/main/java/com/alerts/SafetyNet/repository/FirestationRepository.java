@@ -7,8 +7,10 @@ package com.alerts.SafetyNet.repository;
  */
 
 import org.springframework.stereotype.Repository;
-import com.alerts.SafetyNet.entity.Firestation;
-import com.alerts.SafetyNet.exception.NotFoundException; 
+
+import com.alerts.SafetyNet.exception.NotFoundException;
+import com.alerts.SafetyNet.model.Firestation;
+
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

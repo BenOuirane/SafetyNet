@@ -16,8 +16,9 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
-import com.alerts.SafetyNet.entity.Person;
+
 import com.alerts.SafetyNet.exception.NotFoundException;
+import com.alerts.SafetyNet.model.Person;
 import com.alerts.SafetyNet.repository.impl.PersonRepositoryImpl;
 import com.alerts.SafetyNet.service.impl.PersonServiceImpl;
 

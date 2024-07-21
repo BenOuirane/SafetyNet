@@ -1,4 +1,4 @@
-package com.alerts.SafetyNet.entity;
+package com.alerts.SafetyNet.model;
 /**
  * Class: MedicalRecord
  * @author: BEN OUIRANE Hajer

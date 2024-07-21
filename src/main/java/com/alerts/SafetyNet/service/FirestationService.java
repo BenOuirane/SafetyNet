@@ -1,8 +1,9 @@
 package com.alerts.SafetyNet.service;
 
 import java.util.List;
-import com.alerts.SafetyNet.entity.Firestation;
+
 import com.alerts.SafetyNet.exception.NotFoundException;
+import com.alerts.SafetyNet.model.Firestation;
 
 /**
  * Service that provides CRUD and advanced filter methods for firestation

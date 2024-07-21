@@ -11,8 +11,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.alerts.SafetyNet.repository.impl.PersonRepositoryImpl;
-import com.alerts.SafetyNet.entity.Person;
 import com.alerts.SafetyNet.exception.NotFoundException;
+import com.alerts.SafetyNet.model.Person;
 import com.alerts.SafetyNet.service.PersonService;
 /**
  * Service that provides CRUD and advanced filter methods for Person

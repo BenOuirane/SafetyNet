@@ -1,7 +1,8 @@
 package com.alerts.SafetyNet.dto;
 
 import java.util.List;
-import com.alerts.SafetyNet.entity.Person;
+
+import com.alerts.SafetyNet.model.Person;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ChildAlertDto {

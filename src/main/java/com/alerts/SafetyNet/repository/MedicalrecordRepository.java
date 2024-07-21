@@ -7,9 +7,11 @@ package com.alerts.SafetyNet.repository;
  */
 
 import org.springframework.stereotype.Repository;
-import com.alerts.SafetyNet.entity.MedicalRecord;
-import com.alerts.SafetyNet.entity.Person;
+
 import com.alerts.SafetyNet.exception.NotFoundException;
+import com.alerts.SafetyNet.model.MedicalRecord;
+import com.alerts.SafetyNet.model.Person;
+
 import java.time.LocalDate;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;

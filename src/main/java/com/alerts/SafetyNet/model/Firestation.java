@@ -1,4 +1,4 @@
-package com.alerts.SafetyNet.entity;
+package com.alerts.SafetyNet.model;
 /**
  * Class: Firestation
  * @author: BEN OUIRANE Hajer

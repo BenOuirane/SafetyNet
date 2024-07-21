@@ -17,8 +17,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import com.alerts.SafetyNet.entity.Person;
+
 import com.alerts.SafetyNet.exception.NotFoundException;
+import com.alerts.SafetyNet.model.Person;
 import com.alerts.SafetyNet.repository.impl.PersonRepositoryImpl;
 
 @ExtendWith(MockitoExtension.class)

@@ -1,14 +1,8 @@
 package com.alerts.SafetyNet.repository;
 
-/**
- * Contains Person Data, CRUD and advanced filter methods
- * 
- * @author : BEN OUIRANE Hajer
- *
- */
-
-import com.alerts.SafetyNet.entity.Person;
 import com.alerts.SafetyNet.exception.NotFoundException;
+import com.alerts.SafetyNet.model.Person;
+
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

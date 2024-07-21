@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.alerts.SafetyNet.dto.ChildAlertDto;
-import com.alerts.SafetyNet.entity.Person;
 import com.alerts.SafetyNet.exception.NotFoundException;
+import com.alerts.SafetyNet.model.Person;
 import com.alerts.SafetyNet.repository.MedicalrecordRepository;
 import com.alerts.SafetyNet.repository.PersonRepository;
 
@@ -23,8 +23,6 @@ public class UrlChildAlertService {
 		List<Person> PeopleIntoAddress   = personRepository .getPersonsByAddresse(address);
 		List<Person> ChildrenIntoAddress = PeopleIntoAddress.stream().filter(p -> medicalRecordRepository
 				                                            .ifChild(p)).collect(Collectors.toList());
-		List<Person> FamilyIntoAddress   = PeopleIntoAddress.stream().filter(p -> medicalRecordRepository
-                                                            .ifAdult(p)).collect(Collectors.toList());
         List<ChildAlertDto> childrenIntoAddressToRead = new ArrayList<>();
 		for(Person person : ChildrenIntoAddress ) {
 		 int age =	medicalRecordRepository.havePersonAge(person);
@@ -32,7 +30,7 @@ public class UrlChildAlertService {
                  person.getFirstName(),
                  person.getLastName(),
                  age,
-                 FamilyIntoAddress
+                 PeopleIntoAddress
          );
 		 childrenIntoAddressToRead.add(Kid);
 		}

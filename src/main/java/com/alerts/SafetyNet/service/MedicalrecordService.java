@@ -1,8 +1,9 @@
 package com.alerts.SafetyNet.service;
 
 import java.util.List;
-import com.alerts.SafetyNet.entity.MedicalRecord;
+
 import com.alerts.SafetyNet.exception.NotFoundException;
+import com.alerts.SafetyNet.model.MedicalRecord;
 
 /**
  * Service that provides CRUD and advanced filter methods for medicalrecord

@@ -1,8 +1,8 @@
 package com.alerts.SafetyNet.urlServiceTest;
 
 import com.alerts.SafetyNet.dto.PersonInfoDto;
-import com.alerts.SafetyNet.entity.Person;
 import com.alerts.SafetyNet.exception.NotFoundException;
+import com.alerts.SafetyNet.model.Person;
 import com.alerts.SafetyNet.repository.MedicalrecordRepository;
 import com.alerts.SafetyNet.repository.PersonRepository;
 import com.alerts.SafetyNet.service.url.UrlPersonInfoService;

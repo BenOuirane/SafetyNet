@@ -13,8 +13,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.alerts.SafetyNet.entity.Firestation;
 import com.alerts.SafetyNet.exception.NotFoundException;
+import com.alerts.SafetyNet.model.Firestation;
 import com.alerts.SafetyNet.repository.impl.FirestationRepositoryImpl;
 
 @ExtendWith(MockitoExtension.class)

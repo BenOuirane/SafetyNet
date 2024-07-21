@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import com.alerts.SafetyNet.entity.MedicalRecord;
+
 import com.alerts.SafetyNet.exception.NotFoundException;
+import com.alerts.SafetyNet.model.MedicalRecord;
 import com.alerts.SafetyNet.service.MedicalrecordService;
 import lombok.extern.log4j.Log4j2;
 

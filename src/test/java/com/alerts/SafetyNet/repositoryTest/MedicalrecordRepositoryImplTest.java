@@ -12,9 +12,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import com.alerts.SafetyNet.entity.MedicalRecord;
-import com.alerts.SafetyNet.entity.Person;
+
 import com.alerts.SafetyNet.exception.NotFoundException;
+import com.alerts.SafetyNet.model.MedicalRecord;
+import com.alerts.SafetyNet.model.Person;
 import com.alerts.SafetyNet.repository.impl.MedicalrecordRepositoryImpl;
 import java.time.LocalDate;
 import java.util.ArrayList;

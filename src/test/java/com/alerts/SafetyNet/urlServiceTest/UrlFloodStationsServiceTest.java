@@ -2,9 +2,9 @@ package com.alerts.SafetyNet.urlServiceTest;
 
 import com.alerts.SafetyNet.dto.FloodStationsDto;
 import com.alerts.SafetyNet.dto.HabitantDto;
-import com.alerts.SafetyNet.entity.Firestation;
-import com.alerts.SafetyNet.entity.Person;
 import com.alerts.SafetyNet.exception.NotFoundException;
+import com.alerts.SafetyNet.model.Firestation;
+import com.alerts.SafetyNet.model.Person;
 import com.alerts.SafetyNet.repository.FirestationRepository;
 import com.alerts.SafetyNet.repository.MedicalrecordRepository;
 import com.alerts.SafetyNet.repository.PersonRepository;

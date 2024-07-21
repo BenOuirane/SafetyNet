@@ -6,9 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
-import com.alerts.SafetyNet.entity.MedicalRecord;
-import com.alerts.SafetyNet.entity.Person;
+
 import com.alerts.SafetyNet.exception.NotFoundException;
+import com.alerts.SafetyNet.model.MedicalRecord;
+import com.alerts.SafetyNet.model.Person;
 import com.alerts.SafetyNet.repository.MedicalrecordRepository;
 
 @Service

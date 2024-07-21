@@ -13,8 +13,9 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import com.alerts.SafetyNet.entity.MedicalRecord;
+
 import com.alerts.SafetyNet.exception.NotFoundException;
+import com.alerts.SafetyNet.model.MedicalRecord;
 import com.alerts.SafetyNet.repository.MedicalrecordRepository;
 import com.alerts.SafetyNet.service.impl.MedicalrecordServiceImpl;
 

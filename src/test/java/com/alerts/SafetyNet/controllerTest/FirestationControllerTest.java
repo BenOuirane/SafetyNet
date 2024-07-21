@@ -34,8 +34,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import com.alerts.SafetyNet.controller.FirestationController;
-import com.alerts.SafetyNet.entity.Firestation;
 import com.alerts.SafetyNet.exception.NotFoundException;
+import com.alerts.SafetyNet.model.Firestation;
 import com.alerts.SafetyNet.service.impl.FirestationServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

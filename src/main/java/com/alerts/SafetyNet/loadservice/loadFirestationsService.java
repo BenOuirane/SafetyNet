@@ -3,7 +3,7 @@ package com.alerts.SafetyNet.loadservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.alerts.SafetyNet.configuration.JsonFileConstants;
-import com.alerts.SafetyNet.entity.Firestation;
+import com.alerts.SafetyNet.model.Firestation;
 import com.alerts.SafetyNet.repository.FirestationRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 

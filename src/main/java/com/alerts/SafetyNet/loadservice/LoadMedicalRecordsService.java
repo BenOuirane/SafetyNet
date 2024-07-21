@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.alerts.SafetyNet.configuration.JsonFileConstants;
-import com.alerts.SafetyNet.entity.MedicalRecord;
+import com.alerts.SafetyNet.model.MedicalRecord;
 import com.alerts.SafetyNet.repository.MedicalrecordRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 /**

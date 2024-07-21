@@ -4,7 +4,7 @@ import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.alerts.SafetyNet.configuration.JsonFileConstants;
-import com.alerts.SafetyNet.entity.Person;
+import com.alerts.SafetyNet.model.Person;
 import com.alerts.SafetyNet.repository.impl.PersonRepositoryImpl;
 import com.fasterxml.jackson.databind.JsonNode;
 

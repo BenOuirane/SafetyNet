@@ -9,8 +9,9 @@ package com.alerts.SafetyNet.service.impl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.alerts.SafetyNet.entity.Firestation;
+
 import com.alerts.SafetyNet.exception.NotFoundException;
+import com.alerts.SafetyNet.model.Firestation;
 import com.alerts.SafetyNet.repository.impl.FirestationRepositoryImpl;
 import com.alerts.SafetyNet.service.FirestationService;
 

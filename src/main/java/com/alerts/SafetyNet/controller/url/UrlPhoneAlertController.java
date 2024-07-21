@@ -33,7 +33,7 @@ public class UrlPhoneAlertController {
  	 */
     
     @GetMapping("/phoneAlert")
-    public ResponseEntity<List<PhoneAlertDto>> getPhoneAlertController(@RequestParam int firestation) {
+    public ResponseEntity<List<PhoneAlertDto>> getPhoneAlert(@RequestParam int firestation) {
         try {
             log.info("PhoneAlertController GET Request start. Param firestation = " + firestation);
             List<PhoneAlertDto> result = urlPhoneAlertService.getPhoneByFirestation(firestation);

@@ -40,7 +40,7 @@ public class UrlCommunityEmailController {
  	 */
     
     @GetMapping("/communityEmail")
-    public ResponseEntity<List<String>> getCommunityEmailController(@RequestParam String city)
+    public ResponseEntity<List<String>> getCommunityEmail(@RequestParam String city)
             throws NotFoundException {
         try {
             log.info("UrlCommunityEmailController GET Request start. Param Address = " + city);

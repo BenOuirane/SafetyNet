@@ -45,7 +45,7 @@ public class UrlFireController {
  	 */
     
     @GetMapping("/fire")
-    public ResponseEntity<List<FireDto>> getFireController(@RequestParam String address)
+    public ResponseEntity<List<FireDto>> getFire(@RequestParam String address)
             throws NotFoundException {
         try {
             log.info("UrlFireController GET Request start. Param Address = " + address);

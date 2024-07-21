@@ -44,7 +44,7 @@ public class UrlFloodStationsController {
  	 */
     
     @GetMapping("/flood/stations")
-    public ResponseEntity<List<FloodStationsDto>> getFloodStationsController (@RequestParam List<Integer> stations)
+    public ResponseEntity<List<FloodStationsDto>> getFloodStations(@RequestParam List<Integer> stations)
             throws NotFoundException {
         try {
             log.info("UrlFloodStationsController GET Request start. Param Address = " + stations);

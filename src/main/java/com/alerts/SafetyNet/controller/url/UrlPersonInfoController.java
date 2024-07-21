@@ -44,7 +44,7 @@ public class UrlPersonInfoController {
  	 */
     
     @GetMapping("/personInfo")
-    public ResponseEntity<List<PersonInfoDto>> getPersonInfoController (@RequestParam String lastName)
+    public ResponseEntity<List<PersonInfoDto>> getPersonInfo(@RequestParam String lastName)
             throws NotFoundException {
         try {
             log.info("UrlPersonInfoController GET Request start. Param Address = " + lastName);
